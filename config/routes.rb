@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     password: 'users/passwords',
     registrations: 'users/registrations'
   }
+
+  root to: "starts#index"
 end
