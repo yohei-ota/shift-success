@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   }
 
   root to: "starts#index"
+  resources :user_posts, only: [:index]
+  resources :admin_posts, only: [:index]
 end
