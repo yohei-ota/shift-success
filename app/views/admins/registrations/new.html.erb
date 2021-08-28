@@ -41,21 +41,21 @@
       <label class="form-text">グループ名</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.text_field :group_name, class:"input-default", id:"email", placeholder:"○文字以内" %>
+    <%= f.text_field :group_name, class:"input-default", id:"group-name", placeholder:"○文字以内" %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">締め日</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.date_select :dead_line, class:"input-default", id:"email", placeholder:"選択してください" %>
+    <%= f.date_select :dead_line, class:"input-default", id:"dead-line", placeholder:"選択してください" %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">給料日</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.date_select :pay_day, class:"input-default", id:"email", placeholder:"選択してください" %>
+    <%= f.date_select :pay_day, class:"input-default", id:"pay-day", placeholder:"選択してください" %>
   </div>
 
   <div class='register-btn'>
