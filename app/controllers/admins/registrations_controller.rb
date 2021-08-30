@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class Admins::RegistrationsController < Devise::RegistrationsController
-  def after_sign_up_path_for(resource)
-    admin_posts_path
-  end
-  
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   def new
@@ -18,6 +14,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     @group = Group.find(params[:id])
     @admin = Admin.create(sign_up_params)
     sign_in(:admin, @admin)
+    redirect_to admin_posts_path(@admin)
   end
   private
   def sign_up_params
