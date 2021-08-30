@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
   private
   def configure_pemitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :hourly_wage, :group_name, :pay_day, :dead_line])
-    devise_parameter_sanitizer.permit(:edit, keys: [:name, :hourly_wage, :group_name, :pay_day, :dead_line])
-    devise_parameter_sanitizer.permit(:update, keys: [:name, :hourly_wage, :group_name, :pay_day, :dead_line])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :hourly_wage, :pay_day, :dead_line, :group_id])
+    devise_parameter_sanitizer.permit(:edit, keys: [:name, :hourly_wage, :pay_day, :dead_line])
+    devise_parameter_sanitizer.permit(:update, keys: [:name, :hourly_wage, :pay_day, :dead_line])
   end
 end

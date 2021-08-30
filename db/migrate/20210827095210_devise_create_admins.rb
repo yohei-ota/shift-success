@@ -4,12 +4,13 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.0]
   def change
     create_table :admins do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
-      t.string :name,               null: false
-      t.string :group_name,         null: false, default: ""
-      t.date   :pay_day,            default: ""
-      t.date   :dead_line,          default: ""
+      t.string     :email,              null: false, default: ""
+      t.string     :encrypted_password, null: false, default: ""
+      t.string     :name,               null: false
+      t.integer    :code,               null: false
+      t.integer    :pay_day,            default: ""
+      t.integer    :dead_line,          default: ""
+      t.references :group,              null:false, foreign_key: true
 
       ## Recoverable
       t.string   :reset_password_token
