@@ -38,24 +38,24 @@
 
   <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text">グループ名</label>
+      <label class="form-text">暗証番号</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.text_field :group_name, class:"input-default", id:"group-name", placeholder:"○文字以内" %>
+    <%= f.number_field :code, class:"input-default", id:"group-name", placeholder:"半角数字4文字以上", min: 4 %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">締め日</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.date_select :dead_line, class:"input-default", id:"dead-line", placeholder:"選択してください" %>
+    <%= f.number_field :dead_line, class:"input-default", id:"dead-line", placeholder:"選択してください",min: 1, max: 30 %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">給料日</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.date_select :pay_day, class:"input-default", id:"pay-day", placeholder:"選択してください" %>
+    <%= f.number_field :pay_day, class:"input-default", id:"pay-day", placeholder:"選択してください",min: 1, max: 30 %>
   </div>
 
   <div class='register-btn'>

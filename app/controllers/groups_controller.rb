@@ -5,12 +5,18 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.create(group_params)
-    render :index
+    if Group.exists?(group_params)
+      @group = Group.where(group_name: group_params[:group_name])
+      redirect_to groups_path(@group.ids)
+    else
+      @group = Group.create(group_params)
+      redirect_to groups_path(@group.id)
+    end
+
   end
 
   def index
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:format])
   end
 
   private

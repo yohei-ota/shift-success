@@ -6,7 +6,7 @@ class Admin < ApplicationRecord
 
   validates :name, :code, presence: true
   
-  belongs_to :group
+  belongs_to :group, optional: true
   # has_many :daily_reports
   # has_many :messages, dependent: :destroy
   # has_many :user_admin_rooms, dependent: :destroy

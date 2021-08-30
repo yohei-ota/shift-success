@@ -22,10 +22,10 @@
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text">グループ名</label>
+      <label class="form-text">暗証番号</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.text_field :group_name, class:"input-default", id:"email", placeholder:"○文字以内" %>
+    <%= f.number_field :code, class:"input-default", id:"email", placeholder:"半角数字4文字以上", min: 4 %>
   </div>
 
   <div class='register-btn'>

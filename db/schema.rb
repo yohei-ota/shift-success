@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2021_08_27_095217) do
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
     t.integer "code", null: false
-    t.integer "pay_day"
-    t.integer "dead_line"
+    t.integer "pay_day", default: 1
+    t.integer "dead_line", default: 1
     t.bigint "group_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -34,19 +34,7 @@ ActiveRecord::Schema.define(version: 2021_08_27_095217) do
     t.string "group_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "starts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "group_name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.string "body"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_name"], name: "index_groups_on_group_name", unique: true
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

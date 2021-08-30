@@ -4,5 +4,6 @@ class CreateGroups < ActiveRecord::Migration[6.0]
       t.string :group_name, null:false
       t.timestamps
     end
+    add_index :groups, :group_name, unique: true
   end
 end
