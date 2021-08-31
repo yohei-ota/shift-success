@@ -7,7 +7,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.0]
       t.string     :email,              null: false, default: ""
       t.string     :encrypted_password, null: false, default: ""
       t.string     :name,               null: false
-      t.integer    :code,               null: false
+      t.string     :code,               null: false
       t.integer    :pay_day,            default: "1"
       t.integer    :dead_line,          default: "1"
       t.references :group,              null:false, foreign_key: true

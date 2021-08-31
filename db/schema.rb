@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_08_27_095217) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
-    t.integer "code", null: false
+    t.string "code", null: false
     t.integer "pay_day", default: 1
     t.integer "dead_line", default: 1
     t.bigint "group_id", null: false

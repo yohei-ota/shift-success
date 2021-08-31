@@ -43,7 +43,7 @@
       <label class="form-text">暗証番号</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.number_field :code, class:"input-default", id:"group-name", placeholder:"半角数字4文字以上", min: 4 %>
+    <%= f.text_field :code, class:"input-default", id:"group-name", placeholder:"半角数字4文字以上", minlength: "4" %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
