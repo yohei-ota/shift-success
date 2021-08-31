@@ -6,6 +6,8 @@
     </h1>
   </div>
 
+  <%= render 'layouts/error_messages', model: f.object, locals: { model: @user } %>
+
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">氏名</label>

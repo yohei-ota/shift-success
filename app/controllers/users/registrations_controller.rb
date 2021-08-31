@@ -14,10 +14,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @group = Group.find(params[:id])
-    @user = User.create(sign_up_params)
-    session["devise.regist_data"].clear
-    sign_in(:user, @user)
-    redirect_to user_posts_path(@user)
+    @user = User.new(sign_up_params)
+    if @user.valid?
+      @user.save
+      session["devise.regist_data"].clear
+      sign_in(:user, @user)
+      redirect_to user_posts_path(@user)
+    else
+      render :new
+    end
   end
   private
   def sign_up_params

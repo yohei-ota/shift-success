@@ -12,9 +12,15 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   def create
     @group = Group.find(params[:id])
-    @admin = Admin.create(sign_up_params)
-    sign_in(:admin, @admin)
-    redirect_to admin_posts_path(@admin)
+    @admin = Admin.new(sign_up_params)
+    if @admin.valid?
+      @admin.save
+      session["devise.regist_data"].clear
+      sign_in(:admin, @admin)
+      redirect_to admin_posts_path(@admin)
+    else
+      render :new
+    end
   end
   private
   def sign_up_params

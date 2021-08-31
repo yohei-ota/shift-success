@@ -9,8 +9,13 @@ class GroupsController < ApplicationController
       @group = Group.where(group_name: group_params[:group_name])
       redirect_to groups_path(@group.ids)
     else
-      @group = Group.create(group_params)
-      redirect_to groups_path(@group.id)
+      @group = Group.new(group_params)
+      if @group.valid?
+        @group.save
+        redirect_to groups_path(@group.id)
+      else
+        render :new
+      end
     end
 
   end

@@ -6,6 +6,8 @@
     </h1>
   </div>
 
+  <%= render 'layouts/error_messages', model: f.object, locals: { model: @admin } %>
+
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">氏名</label>
@@ -48,14 +50,14 @@
       <label class="form-text">締め日</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.number_field :dead_line, class:"input-default", id:"dead-line", placeholder:"選択してください",min: 1, max: 30 %>
+    <%= f.number_field :dead_line, class:"input-default", id:"dead-line", placeholder:"選択してください",min: 1, max: 31 %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">給料日</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.number_field :pay_day, class:"input-default", id:"pay-day", placeholder:"選択してください",min: 1, max: 30 %>
+    <%= f.number_field :pay_day, class:"input-default", id:"pay-day", placeholder:"選択してください",min: 1, max: 31 %>
   </div>
 
   <div class='register-btn'>
