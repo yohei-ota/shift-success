@@ -8,5 +8,6 @@ FactoryBot.define do
     password              {'1a' + Faker::Internet.password(min_length: 6)}
     password_confirmation {password}
     hourly_wage           {Faker::Number.between(from: 100, to: 99999)}
+    association :group
   end
 end

@@ -7,8 +7,9 @@ FactoryBot.define do
     email                 {Faker::Internet.free_email}
     password              {'1a' + Faker::Internet.password(min_length: 6)}
     password_confirmation {password}
-    group_name            {Faker::Lorem.sentence}
-    pay_day               {Faker::Date.between(from: '2020-01-01', to: '2200-01-01')}
-    dead_line             {Faker::Date.between(from: '2020-01-01', to: '2200-01-01')}
+    code                  {Faker::Number.leading_zero_number(digits: 4)}
+    pay_day               {Faker::Number.between(from: 1, to: 31)}
+    dead_line             {Faker::Number.between(from: 1, to: 31)}
+    association :group
   end
 end
