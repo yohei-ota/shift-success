@@ -1,0 +1,24 @@
+<%= form_with model: @group, url: groups_path, class: 'registration-main', local: true do |f| %>
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      グループ名を入力して下さい
+    </h1>
+  </div>
+
+  <%= render 'layouts/error_messages', model: f.object, locals: { model: @group } %>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">グループ名</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.text_area :group_name, class:"input-default", id:"name", placeholder:"例) furima太郎", maxlength:"40" %>
+  </div>
+  
+
+  <div class='register-btn'>
+    <%= f.submit "送信" ,class:"register-red-btn" %>
+  </div>
+</div>
+<% end %>

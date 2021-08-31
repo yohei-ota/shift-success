@@ -1,5 +1,24 @@
 # テーブル設計
 
+## groups テーブル
+
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| group_name   | string | null: false |
+
+### Association
+
+- has_many : admins
+- has_many : users
+- has_many : user_admin_rooms
+- has_many : rooms
+- has_many : messages
+- has_many : work_schedules
+- has_many : actual_works
+- has_many : daily_reports
+- has_many : monthly_reports
+
+
 ## admins テーブル
 
 | Column             | Type    | Options                   |
@@ -10,9 +29,11 @@
 | group_name         | string  | null: false               |
 | pay_day            | date    | default: null             |
 | dead_line          | date    | default: null             |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - has_many :daily_reports
 - has_many :messages, dependent: :destroy
 - has_many :user_admin_rooms, dependent: :destroy
@@ -26,9 +47,11 @@
 | email              | string  | null: false, unique: true |
 | encrypted_password | string  | null: false               |
 | hourly_wage        | integer | default: null             |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - has_many :work_schedules
 - has_many :messages, dependent: :destroy
 - has_many :user_admin_rooms, dependent: :destroy
@@ -42,9 +65,11 @@
 | user_id  | reference | null: false, foreign_key: true |
 | admin_id | reference | null: false, foreign_key: true |
 | room_id  | reference | null: false, foreign_key: true |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - belongs_to :user
 - belongs_to :admin
 - belongs_to :room
@@ -55,9 +80,11 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | name   | string | null: false |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - has_many :user_admin_rooms, dependent: :destroy
 - has_many :user, through: :user_admin_rooms
 - has_many :messages, dependent: :destroy
@@ -70,9 +97,11 @@
 | content  | text      | null: false                    |
 | user_id  | reference | null: false, foreign_key: true |
 | room_id  | reference | null: false, foreign_key: true |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - belongs_to :room
 - belongs_to :user
 - belongs_to :admin
@@ -86,9 +115,11 @@
 | datetime_out | datetime  |                               |
 | holiday      | boolean   | default: false                |
 | user_id      | reference | nul: false, foreign_key: true |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - belongs_to :user
 
 
@@ -102,9 +133,11 @@
 | holiday         | boolean   | default: false, foreign_key: true |
 | user_id         | reference | nul: false, foreign_key: true     |
 | daily_report_id | reference | optional: true, foreign_key: true |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - belongs_to :user
 - belongs_to :daily_report
 
@@ -117,9 +150,11 @@
 | comments          | text      |                                   |
 | admin_id          | reference | null: false, foreign_key: true    |
 | monthly_report_id | reference | optional: true, foreign_key: true |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - has_many :actual_works
 - belongs_to :admin
 - belongs_to :monthly_report
@@ -132,7 +167,9 @@
 | --------------- | --------- | ------------------------------ |
 | sales           | float     |                                |
 | comments        | text      |                                |
+| group_name_id      | reference | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :group
 - has_many :daily_reports
