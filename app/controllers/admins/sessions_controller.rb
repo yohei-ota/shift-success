@@ -26,7 +26,9 @@ class Admins::SessionsController < Devise::SessionsController
   # end
   private
   def permmit_admin
-    if current_admin.group_id != params[:id].to_i
+    if current_admin.blank?
+      redirect_to action: :new
+    elsif current_admin.group_id != params[:id].to_i
       sign_out_and_redirect(current_admin)
     end
   end
