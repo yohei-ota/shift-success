@@ -1,3 +1,28 @@
-<h1>管理者ユーザートップページ</h1>
-
-<%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "logout" %>
+<%= render "layouts/header"%>
+<div class="background">
+  <div class="make-admin-main">
+    <div class="back-box">
+        <h1 class="admin-title">今日のシフト</h1>
+        <div class="table-scroll">
+          <table>
+            <tbody>
+              <tr>
+                <th class="table-head">名前</th>
+                <% 25.times do |time| %>
+                    <th colspan="2"><%= "#{time}" %></th>
+                <% end %>
+              </tr>
+              <% @users.each do |users| %>
+                <tr>
+                  <td class="table-head"><%= users.name %></td>
+                  <% 50.times do %>
+                    <td class="border-th"><%=""%></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>

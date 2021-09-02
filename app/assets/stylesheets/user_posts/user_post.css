@@ -1,0 +1,54 @@
+.smart-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffb36b;
+}
+
+.smart-sub-menu {
+  display: flex;
+  align-items: flex-end;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.make-user-main {
+  height: 100%;
+  width: 100%;
+  margin: 50px 10px;
+  background-color: #dfdede;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.make-user-sub {
+  align-items: center;
+  justify-content: center;
+}
+
+.shift-table {
+  width: 90%;
+  margin: 40px 20px;
+}
+
+
+.bottom-menu {
+  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: white;
+  width: 100%;
+}
+.bottom-list {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 5px;
+  list-style: none;
+  text-align: center;
+}
+.bottom-name {
+  display: block;
+  font-size: 20px;
+}

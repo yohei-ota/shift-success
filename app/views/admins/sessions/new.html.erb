@@ -1,40 +1,44 @@
-<%= form_with model: @admin, url: admin_session_path, class: 'registration-main', local: true do |f| %>
-<div class='form-wrap'>
-  <div class='form-header'>
-    <h1 class='form-header-text'>
-      管理者ログイン
-    </h1>
-  </div>
+<div class="background">
+  <div class="make-group">
+    <%= form_with model: @admin, url: admin_session_path, class: 'admin-sign-in-main', local: true do |f| %>
+      <div class='form-wrap'>
+        <div class='form-main'>
+          <h1 class='form-main-text'>
+            管理者ログイン
+          </h1>
+        </div>
 
-  <div class='login-flash-message'>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
-  </div>
+        <div class='login-flash-message'>
+          <%= flash[:notice] %>
+          <%= flash[:alert] %>
+        </div>
 
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">メールアドレス</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :password, class:"input-default", id:"password", placeholder:"6文字以上の半角英数字" %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">暗証番号</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.number_field :code, class:"input-default", id:"email", placeholder:"半角数字4文字以上", min: 4 %>
-  </div>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-sub-text">メールアドレス</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.email_field :email, class:"input-group", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
+        </div>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">パスワード</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.password_field :password, class:"input-group", id:"password", placeholder:"6文字以上の半角英数字" %>
+        </div>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-sub-text">暗証番号</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.text_field :code, class:"input-group", id:"email", placeholder:"半角数字4文字以上", minlength: "4" %>
+        </div>
 
-  <div class='register-btn'>
-    <%= f.submit "ログイン" ,class:"register-red-btn" %>
+        <div class='form-group'>
+          <%= f.submit "ログイン" ,class:"btn" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
-<% end %>

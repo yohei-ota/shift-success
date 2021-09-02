@@ -1,24 +1,25 @@
-<%= form_with model: @group, url: groups_path, class: 'registration-main', local: true do |f| %>
-<div class='form-wrap'>
-  <div class='form-header'>
-    <h1 class='form-header-text'>
-      グループ名を入力して下さい
-    </h1>
-  </div>
+<div class="background">
+  <div class="make-group">
+    <%= form_with model: @group, url: groups_path, class: 'registration-main', local: true do |f| %>
+    <div class='form-wrap'>
+      <div class='form-main'>
+        <h1 class='form-main-text'>
+          会社名・店舗名登録
+        </h1>
+      </div>
 
-  <%= render 'layouts/error_messages', model: f.object, locals: { model: @group } %>
+      <%= render 'layouts/error_messages', model: f.object, locals: { model: @group } %>
 
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">グループ名</label>
-      <span class="indispensable">必須</span>
+      <div class="form-group">
+          <label class="form-sub-text">※ 登録済みの方も入力して下さい</label>
+        <%= f.text_area :group_name, class:"input-group", placeholder:"例) 〇〇株式会社", maxlength:"40" %>
+      </div>
+      
+
+      <div class="form-group">
+        <%= f.submit "次へ" ,class:"btn" %>
+      </div>
     </div>
-    <%= f.text_area :group_name, class:"input-default", id:"name", placeholder:"例) furima太郎", maxlength:"40" %>
-  </div>
-  
-
-  <div class='register-btn'>
-    <%= f.submit "送信" ,class:"register-red-btn" %>
+    <% end %>
   </div>
 </div>
-<% end %>
