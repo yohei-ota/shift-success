@@ -32,13 +32,6 @@ a {
   filter: blur(8px);
   z-index: -1;
 }
-
-/* .make-group {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 .link-wrap,
 form {
   margin: 70px auto;
