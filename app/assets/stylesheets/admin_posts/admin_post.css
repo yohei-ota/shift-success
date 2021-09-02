@@ -22,7 +22,7 @@
   margin: 20px;  
 }
 
-table {
+.today-shift {
   background-color: white;
   table-layout: fixed;
   width: 100%;
