@@ -1,6 +1,5 @@
 <header class="header">
   <div class="box box-logo">
-    <img class="logo-img" src="https://see-ss.com/img/logo@2x.png" />
     <div class="sub-title">シフト管理・作成</div>
   </div>
   <div class="sp-nav">
@@ -27,7 +26,7 @@
         <%= link_to "各種設定", "#", class: "menu-list" %>
       </li>
       <li class="menu">
-        <%= link_to "ログアウト", "#", class: "menu-list" %>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "menu-list" %>
       </li>
     </ul>
   </div>

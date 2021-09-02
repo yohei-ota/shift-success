@@ -10,6 +10,7 @@
   background-image: url("/assets/sign_in_up.png");
   background-size: 25em;
   position: relative;
+  height: 100vh;
   z-index: 0;
 }
 .background::before {
