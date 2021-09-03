@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2021_09_03_013732) do
   end
 
   create_table "work_schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.time "datetime_in"
-    t.time "datetime_out"
+    t.datetime "datetime_in"
+    t.datetime "datetime_out"
     t.boolean "holiday", default: false
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
