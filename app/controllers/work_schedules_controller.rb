@@ -1,0 +1,2 @@
+class WorkSchedulesController < ApplicationController
+end
