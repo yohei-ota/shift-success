@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: "には半角英数字で入力してください"
   
   belongs_to :group, optional: true
-  # has_many :work_schedules
+  has_many   :work_schedules
   # has_many :messages, dependent: :destroy
   # has_many :user_admin_rooms, dependent: :destroy
   # has_many :rooms, through: :user_admin_rooms
