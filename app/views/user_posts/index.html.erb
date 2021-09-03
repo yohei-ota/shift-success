@@ -88,8 +88,7 @@
 		<span class="bottom-name">お給料</span></a>
 	</li>
 	<li class="bottom-list">
-		<a href="飛ばしたいページのURL"><i class="アイコンのコード"></i><br>
-		<span class="bottom-name">メンバー確認</span></a>
+		<%= link_to "シフト希望", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
 	</li>
   <li class="bottom-list">
 		<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bottom-name" %><i class="アイコンのコード"></i><br>
