@@ -9,22 +9,28 @@ class WorkScheduleCollection
     user_id
     group_id
   )
-  attr_accessor :collection
-
+  attr_accessor :collections, :user_id, :group_id
+ 
   
   
   def initialize(attributes = {})
-    # super attributes
-    self.collection = COLLECTION_NUM.times.map { WorkSchedule.new() } unless self.collection.present?
+    super attributes
+    self.collections = COLLECTION_NUM.times.map { WorkSchedule.new } unless self.collections.present?
   end
   
-  def collection_attributes=(attributes)
-    self.collection = attributes.map { |_, v| WorkSchedule.new(v) }
+  def collections_attributes=(attributes)
+    self.collections = attributes.map do |_, collection_attributes|
+      WorkSchedule.new(collection_attributes)
+    end
   end
   
   def save
     WorkSchedule.transaction do
-      self.collection.map(&:save!)
+      COLLECTION_NUM.times do |i| 
+        self.collections[i].user_id = @user_id
+        self.collections[i].group_id = @group_id
+      end
+      self.collections.map(&:save!)
     end
     return true
   rescue => e

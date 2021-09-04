@@ -18,7 +18,7 @@
   margin: 50px 10px;
   background-color: #dfdede;
   display: flex;
-  /* align-items: center; */
+  overflow-x : auto;
   justify-content: center;
 }
 

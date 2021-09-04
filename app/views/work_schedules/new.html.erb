@@ -51,6 +51,7 @@
       <%= form_with model:@schedules, url: work_schedules_path, class: 'registration-main', local: true do |f| %>
         <div class='form-wrap'>
           <div class='form-header'>
+          <%= render 'layouts/error_messages', model: f.object %>
             <h1 class='form-header-text'>
               シフト希望申請
             </h1>
@@ -59,32 +60,30 @@
             <%= flash[:notice] %>
             <%= flash[:alert] %>
           </div>
-          <%# <%= f.fields_for :collection do |i|%> %>
-          <%# <% 7.times do |date| %> %>
-            <% date = @today %>
-            <% wday = date.wday %>
+          <%= f.fields_for :collections do |i| %>
+            <% wday = @today.wday %>
             <% wdays = [ "(日)",  "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]%>
-            <%= "#{date.month}月 #{date.day}日 #{wdays[wday]}" %>
+            <%= "#{@today.month}月 #{@today.day}日 #{wdays[wday]}" %>
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">開始時間</label>
               </div>
-              <%= f.datetime_select :datetime_in %>
+              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, discard_day: true, minute_step: 30, default: Date.today + 0.hour} %>
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">終了時間</label>
               </div>
-              <%= f.datetime_select :datetime_out %>
+              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, discard_day: true, minute_step: 30, default: Date.today + 0.hour} %>
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">休日希望</label>
               </div>
-              <%= f.check_box :holiday, checked_value: "1", unchecked_value: "0" %>
+              <%= i.check_box :holiday, checked_value: "1", unchecked_value: "0" %>
             </div>
-            <%# <% @today += 1 %> %>
-          <%# <% end %> %>
+            <% @today += 1 %>
+          <% end %>
 
           <div class='login-btn'>
             <%= f.submit "保存" ,class:"login-red-btn" %>
