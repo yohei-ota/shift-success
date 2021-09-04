@@ -48,10 +48,9 @@
   
 
 
-      <%= form_with model:@schedules, url: work_schedules_path, class: 'registration-main', local: true do |f| %>
+      <%= form_with model:@schedules, url: work_schedules_path, class: 'registration-shift', local: true do |f| %>
         <div class='form-wrap'>
           <div class='form-header'>
-          <%= render 'layouts/error_messages', model: f.object %>
             <h1 class='form-header-text'>
               シフト希望申請
             </h1>
@@ -61,6 +60,7 @@
             <%= flash[:alert] %>
           </div>
           <%= f.fields_for :collections do |i| %>
+          <%= render 'layouts/error_messages', model: i.object %>
             <% wday = @today.wday %>
             <% wdays = [ "(日)",  "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]%>
             <%= "#{@today.month}月 #{@today.day}日 #{wdays[wday]}" %>
@@ -68,13 +68,13 @@
               <div class='form-text-wrap'>
                 <label class="form-text">開始時間</label>
               </div>
-              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, discard_day: true, minute_step: 30, default: Date.today + 0.hour} %>
+              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}} %>
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
                 <label class="form-text">終了時間</label>
               </div>
-              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, discard_day: true, minute_step: 30, default: Date.today + 0.hour} %>
+              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}} %>
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
