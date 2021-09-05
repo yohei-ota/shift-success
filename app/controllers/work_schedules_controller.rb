@@ -10,7 +10,6 @@ class WorkSchedulesController < ApplicationController
     @today = Date.today
     @group = Group.find(params[:id])
     @schedules = WorkScheduleCollection.new(schedule_collections_params)
-    binding.pry
     WorkScheduleCollection::COLLECTION_NUM.times do |i| #非表示にして月初になっている日付を「本日」から7日間分に変更
       @schedules.collections[i].datetime_in += (@today.day + i - 1) * 60 * 60 * 24
       @schedules.collections[i].datetime_out += (@today.day + i - 1) * 60 * 60 * 24
@@ -28,7 +27,7 @@ class WorkSchedulesController < ApplicationController
   def schedule_collections_params
     params
       .require(:work_schedule_collection)
-      .permit(collections_attributes: WorkScheduleCollection::REGISTRABLE_ATTRIBUTES)
+      .permit({collections_attributes: [WorkScheduleCollection::REGISTRABLE_ATTRIBUTES]}, :add_request)
       .merge(user_id: current_user.id, group_id: params[:id])
   end
 end

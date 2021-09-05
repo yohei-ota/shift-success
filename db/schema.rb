@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_013732) do
     t.datetime "datetime_in"
     t.datetime "datetime_out"
     t.boolean "holiday", default: false
+    t.string "add_request"
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -84,6 +84,12 @@
             </div>
             <% @today += 1 %>
           <% end %>
+            <div class="form-group">
+              <div class='form-text-wrap'>
+                <label class="form-text">コメント</label>
+              </div>
+              <%= f.text_area :add_request, placeholder:"コメントする", maxlength:"40" %>
+            </div>
 
           <div class='login-btn'>
             <%= f.submit "保存" ,class:"login-red-btn" %>
