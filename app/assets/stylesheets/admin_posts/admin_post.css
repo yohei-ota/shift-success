@@ -51,3 +51,8 @@ table td {
 .border-th {
   border-left: solid 1px rgb(200, 200, 200);
 }
+
+.schedules-list {
+  height: 80%;
+  width: 100%;
+}
