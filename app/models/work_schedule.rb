@@ -2,9 +2,11 @@ class WorkSchedule < ApplicationRecord
   belongs_to :group
   belongs_to :user
 
+  validates :holiday, inclusion: {in: [true, false]}
   validate :each_duplicate_check
   # validate :duplicate_check
   validate :time_check
+  validate :now_time_check
 
   # シフト希望があるなら開始と終了両方ないといけない
   def each_duplicate_check
@@ -16,6 +18,14 @@ class WorkSchedule < ApplicationRecord
   # end
   # 開始と終了時刻に矛盾があってはいけない
   def time_check
-    errors.add(:datetime_out, "は勤務開始日時より遅い日時を入力してください") if self.datetime_in > self.datetime_out
+    if self.datetime_in.present? || self.datetime_out.present?
+      errors.add(:datetime_out, "は勤務開始日時より遅い日時を入力してください") if self.datetime_in > self.datetime_out
+    end
+  end
+  # 過去の日時は受け付けない
+  def now_time_check
+    if self.datetime_in.present? || self.datetime_out.present?
+      errors.add(:datetime_in, "日時を正しく入力してください") if self.datetime_in < DateTime.now
+    end
   end
 end
