@@ -1,0 +1,2 @@
+class ActualWorksController < ApplicationController
+end
