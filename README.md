@@ -114,6 +114,7 @@
 | datetime_in  | datetime  |                               |
 | datetime_out | datetime  |                               |
 | holiday      | boolean   | default: false                |
+| add_request  | string    |                               | 
 | user_id      | reference | nul: false, foreign_key: true |
 | group_name_id      | reference | null: false, foreign_key: true |
 

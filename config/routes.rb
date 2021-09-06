@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
       resources :user_posts, only: [:index]
       resources :admin_posts, only: [:index]
+      resources :work_schedules, only: [:new, :create]
     end
   end
 end
