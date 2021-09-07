@@ -5,37 +5,83 @@
         <h1 class="admin-title"><%="シフト作成トップ#{current_admin.name}" %></h1>
         <div class="table-scroll">
           <table class="today-shift"> 
-            <tbody>
               <tr>
                 <th class="table-head">名前</th>
                 <% 25.times do |time| %>
                     <th colspan="2"><%= "#{time}" %></th>
                 <% end %>
               </tr>
-              <% @users.each do |users| %>
-                <tr>
-                  <td class="table-head"><%= users.name %></td>
+              <% @users.each_with_index do |users, f| %>
+            <tbody class="row-group", id=<%= "group#{f}" %>>
+                <tr id="time-list">
+                  <td class="table-head", id=<%= "user#{f}" %>><%= users.name %></td>
                   <% 50.times do |i|%>
-                    <td class="border-th", id=<%= "#{i}" %>><%=""%></td>
+                    <td class="border-th", id=<%= "num#{i}" %>><%=""%></td>
                   <% end %>
                 </tr>
-              <% end %>
             </tbody>
+              <% end %>
           </table>
         </div>
 
         <div class="today-shift">
           <% @schedules.each do |schedules| %>
-            <%= schedules.user.name %>
+            <div class="user-name", id="user-name">
+              <%= schedules.user.name %>
+            </div>
             <% if schedules.holiday == true %>
-              <%= "休み希望" %>
+              <%= schedules.datetime_in.strftime("%m月%d日") %>
+              <%= "休み" %>
+              <%= schedules.add_request %>
             <% else %>
               <%= schedules.datetime_in.strftime("%m月%d日%H : %M ~") %>
               <%= schedules.datetime_out.strftime(" %H : %M")%>
+              <%= schedules.add_request %>
             <% end %>
-            <%= schedules.add_request %>
           <% end %>
         </div>
+
+
+
+
+        <%= form_with model:@works, url: actual_works_path, local: true do |f| %>
+        <div class='form-wrap'>
+          <div class='login-flash-message'>
+            <%= flash[:notice] %>
+            <%= flash[:alert] %>
+          </div>
+          <%= render 'layouts/error_messages', model: f.object %>
+            <% wday = @today.wday %>
+            <% wdays = [ "(日)",  "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]%>
+            <% "#{@today.month}月 #{@today.day}日 #{wdays[wday]}" %>
+            <div class="form-group">
+              <%# <div class='form-text-wrap'>
+                <label class="form-text">開始時間</label>
+              </div> %>
+              <% f.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}} %>
+            </div>
+            <div class="form-group">
+              <%# <div class='form-text-wrap'>
+                <label class="form-text">終了時間</label>
+              </div> %>
+              <% f.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}} %>
+            </div>
+            <div class="form-group">
+              <%# <div class='form-text-wrap'>
+                <label class="form-text">休日希望</label>
+              </div> %>
+              <% f.check_box :holiday, checked_value: "1", unchecked_value: "0" %>
+            </div>
+            <% @today += 1 %>
+
+          <div class='login-btn'>
+            <%= f.submit "保存" ,class:"login-red-btn" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+
+<%# <script src="make_shift.js"></script> %>
+<%# <%= javascript_pack_tag "make_shift.js" %> %>
