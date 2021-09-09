@@ -5,6 +5,8 @@ class ActualWorksController < ApplicationController
     @schedules = WorkSchedule.where(group_id: current_admin.group_id).where("datetime_in >= ?", Date.today)
     @works = ActualWork.new
     @users = User.where(group_id: current_admin.group_id)
+    gon.schedules = @schedules
+    gon.users = @users
   end
 
   def create
