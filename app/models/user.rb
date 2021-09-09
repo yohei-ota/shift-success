@@ -10,7 +10,7 @@ class User < ApplicationRecord
   
   belongs_to :group, optional: true
   has_many   :work_schedules
-  has_many   :actual_works
+  # has_many   :actual_works, dependent: :destroy
   # has_many :messages, dependent: :destroy
   # has_many :user_admin_rooms, dependent: :destroy
   # has_many :rooms, through: :user_admin_rooms

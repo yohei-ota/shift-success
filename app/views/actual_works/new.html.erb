@@ -32,44 +32,30 @@
 
 
 
-        <%= form_with model:@works, url: actual_works_path, local: true do |f| %>
+        <%= form_with model:@works, url: actual_works_path, id: "shift-form", local: true do |f| %>
         <div class='form-wrap'>
           <div class='login-flash-message'>
             <%= flash[:notice] %>
             <%= flash[:alert] %>
           </div>
           <%= render 'layouts/error_messages', model: f.object %>
-            <% wday = @today.wday %>
-            <% wdays = [ "(日)",  "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]%>
-            <% "#{@today.month}月 #{@today.day}日 #{wdays[wday]}" %>
+            <%= f.text_field :user_id, id:"user-id" %>
+            <%= f.text_field :date, id:"work-date"%>
             <div class="form-group">
-              <%# <div class='form-text-wrap'>
-                <label class="form-text">開始時間</label>
-              </div> %>
-              <%= f.text_field :datetime_in, id:"in-time" %>
+              <%= f.text_field :datetime_in_actual, id:"in-time" %>
             </div>
             <div class="form-group">
-              <%# <div class='form-text-wrap'>
-                <label class="form-text">終了時間</label>
-              </div> %>
-              <%= f.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}}, id:"out-time" %>
+              <%= f.text_field :datetime_out_actual, id:"out-time" %>
             </div>
             <div class="form-group">
-              <%# <div class='form-text-wrap'>
-                <label class="form-text">休日希望</label>
-              </div> %>
-              <%= f.check_box :holiday, checked_value: "1", unchecked_value: "0", class:"holiday", id:"holiday" %>
+              <%= f.check_box :holiday_actual, checked_value: "1", unchecked_value: "0", class:"holiday", id:"holiday" %>
             </div>
-            <% @today += 1 %>
 
           <div class='login-btn'>
-            <%= f.submit "保存" ,class:"login-red-btn" %>
+            <%= f.submit "保存" ,class:"login-red-btn", id:"btn" %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-
-<%# <script src="make_shift.js"></script> %>
-<%# <%= javascript_pack_tag "make_shift.js" %> %>

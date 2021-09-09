@@ -10,6 +10,21 @@ class ActualWorksController < ApplicationController
   end
 
   def create
+    @works = ActualWork.new(actual_work_params)
+    if @works.valid?
+      @works.save
+      redirect_to new_actual_work_path
+    else
+      redirect_to new_actual_work_path
+    end
+  end
 
+
+
+
+  private
+
+  def actual_work_params
+    params.require(:actual_work).permit(:user_id, :date, :datetime_in_actual, :datetime_out_actual, :holiday_actual).merge(group_id: params[:id])
   end
 end
