@@ -58,3 +58,7 @@ table td {
   height: 80%;
   width: 100%;
 }
+
+.hidden {
+  display: none;
+}

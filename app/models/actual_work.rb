@@ -8,6 +8,7 @@ class ActualWork < ApplicationRecord
   validates :holiday_actual, inclusion: {in: [true, false]}
   validate :each_duplicate_check
   validate :duplicate_check
+  validate :duplicate_check_another
   validate :time_check
   # validate :now_time_check
 
@@ -18,6 +19,9 @@ class ActualWork < ApplicationRecord
   # 休み希望とシフト希望両立してはいけない
   def duplicate_check
     errors.add(:holiday_actual, "勤務希望と休み希望が重複しています") if (self.holiday_actual == false) && (self.datetime_in_actual == "" || self.datetime_out_actual == "")
+  end
+  def duplicate_check_another
+    errors.add(:holiday_actual, "勤務希望と休み希望が重複しています") if (self.holiday_actual == true) && (self.datetime_in_actual.present? || self.datetime_out_actual.present?)
   end
   # 開始と終了時刻に矛盾があってはいけない
   def time_check

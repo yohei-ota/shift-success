@@ -24,15 +24,6 @@ RSpec.describe WorkSchedule, type: :model do
         @work_schedule.datetime_out = DateTime.now + 2
         expect(@work_schedule).to be_valid
       end
-      it "datetime_inがなくても申請できる" do
-        @work_schedule.datetime_in = ""
-        @work_schedule.datetime_out = ""
-        expect(@work_schedule).to be_valid
-      end
-      it "add_requestがなくても申請できる" do
-        @work_schedule.add_request = ""
-        expect(@work_schedule).to be_valid
-      end
     end
 
     context "シフト希望申請できないとき" do
