@@ -5,6 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 .back-box {
   height: 90%;
@@ -18,7 +20,7 @@
 }
 
 .table-scroll {
-  overflow-x : auto;
+  overflow-x: auto;
   margin: 20px;  
 }
 
@@ -50,4 +52,13 @@ table td {
 
 .border-th {
   border-left: solid 1px rgb(200, 200, 200);
+}
+
+.schedules-list {
+  height: 80%;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
 }

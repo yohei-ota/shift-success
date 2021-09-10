@@ -29,6 +29,10 @@
   margin: 60px 20px;
 }
 
+.border-th {
+  caret-color: transparent;
+}
+
 
 .bottom-menu {
   display: flex;

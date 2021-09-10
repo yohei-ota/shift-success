@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_013732) do
+ActiveRecord::Schema.define(version: 2021_09_06_060312) do
+
+  create_table "actual_works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "date", null: false
+    t.string "datetime_in_actual"
+    t.string "datetime_out_actual"
+    t.boolean "holiday_actual", default: false, null: false
+    t.float "over_early_time", default: 0.0
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_actual_works_on_group_id"
+  end
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -56,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_013732) do
   create_table "work_schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "datetime_in"
     t.datetime "datetime_out"
-    t.boolean "holiday", default: false
+    t.boolean "holiday", default: false, null: false
     t.string "add_request"
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
@@ -66,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_013732) do
     t.index ["user_id"], name: "index_work_schedules_on_user_id"
   end
 
+  add_foreign_key "actual_works", "groups"
   add_foreign_key "admins", "groups"
   add_foreign_key "users", "groups"
   add_foreign_key "work_schedules", "groups"
