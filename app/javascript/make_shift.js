@@ -95,18 +95,21 @@ function shift() {
       let startTime = "" // 入時間の情報を定義しリセット
       let endTime = "" // 終時間の情報を定義しリセット
       if(startWork % 2 === 0){
-        startTime = ( '0' + (((startWork / 2) * 100) -70)).slice( -4 ) // 入時間を4桁数値に変換 12:34 => 1234
+        startTime = ( '000' + (((startWork / 2) * 100) -70)).slice( -4 ) // 入時間を4桁数値に変換 12:34 => 1234
       } else if(startWork % 2 === 1){
-        startTime = ( '0' + (((startWork / 2) - 0.5) * 100)).slice( -4 ) // 入時間を4桁数値に変換 12:34 => 1234
+        startTime = ( '000' + (((startWork / 2) - 0.5) * 100)).slice( -4 ) // 入時間を4桁数値に変換 12:34 => 1234
       }
       if(endWork % 2 === 0){
-        endTime = ( '0' + ((endWork / 2) * 100)).slice( -4 ) // 終時間を4桁数値に変換 12:34 => 1234
+        endTime = ( '000' + ((endWork / 2) * 100)).slice( -4 ) // 終時間を4桁数値に変換 12:34 => 1234
       } else if(endWork % 2 === 1){
-        endTime = ( '0' + (((endWork / 2) * 100) - 20)).slice( -4 ) // 終時間を4桁数値に変換 12:34 => 1234
+        endTime = ( '000' + (((endWork / 2) * 100) - 20)).slice( -4 ) // 終時間を4桁数値に変換 12:34 => 1234
       }
       workDate.value = date.value // 選択している日付をフォームに代入
       inTime.value = startTime // 入時間をフォームに代入
       outTime.value = endTime // 終時間をフォームに代入
+      if((inTime.value == "") || (outTime.value == "")){ // 表の色がないところは休みをtrueで代入
+        holiday.checked = true
+      }
       let formData = new FormData(formResult) // フォームデータを定義
       let XHR = new XMLHttpRequest()
       XHR.open("POST",`/groups/${user.group_id}/actual_works`, true) // 紐づくグループのcreateアクションにPOST
@@ -115,12 +118,14 @@ function shift() {
       workDate.value = ""
       inTime.value = ""
       outTime.value = ""
+      holiday.checked = false
     }
   }
   
   btn.addEventListener("click", (e) =>{ // 保存ボタンがクリックされたらイベント発火
     e.preventDefault()
     form()
+    alert("保存されました！")
   })
 }
 

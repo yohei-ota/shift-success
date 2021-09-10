@@ -13,10 +13,10 @@ class ActualWorksController < ApplicationController
     @works = ActualWork.new(actual_work_params)
     if @works.valid?
       @works.save
-      redirect_to new_actual_work_path
     else
       redirect_to new_actual_work_path
     end
+    redirect_to new_actual_work_path
   end
 
 
