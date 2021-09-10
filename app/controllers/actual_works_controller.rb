@@ -21,7 +21,9 @@ class ActualWorksController < ApplicationController
 
 
   def edit
-
+    @today = Date.today
+    @works = ActualWork.where(group_id: current_admin.group_id).where("date >= ?", Date.today)
+    @users = User.where(group_id: current_admin.group_id)
   end
 
   def update
