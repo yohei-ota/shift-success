@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_060312) do
 
   create_table "actual_works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "date", null: false
+    t.date "date", null: false
     t.string "datetime_in_actual"
     t.string "datetime_out_actual"
     t.boolean "holiday_actual", default: false, null: false
