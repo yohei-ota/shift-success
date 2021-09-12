@@ -68,7 +68,7 @@ function shift() {
   })
   
   
-  timeId.forEach(function(target){ // セルがクリックされたら色がつくor消え、idListに追加or削除される
+  timeId.forEach(function(target){ // セルがクリックされたら色がつくor消える
     target.addEventListener("mousedown", function(){
       if(target.getAttribute("style") === "background-color:#004e0a;"){
         this.removeAttribute("style", "background-color:#004e0a;")

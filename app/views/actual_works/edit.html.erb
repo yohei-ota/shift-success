@@ -27,8 +27,8 @@
 
 
       <%= form_with model:@works, url: "#", id: "shift-form", local: true do |f| %>
-        <% @works.each do |work| %>
-          <% @users.each do |user| %>
+        <% @works.each_with_index do |work, w| %>
+          <% @users.each_with_index do |user, u| %>
             <% if work.holiday_actual == false %>
               <div class='form-wrap'>
                 <div class='login-flash-message'>
@@ -38,16 +38,17 @@
                 <%# <%= render 'layouts/error_messages', model: f.object %>
                 <% if work.user_id == user.id%>
                   <div class="form-group">
-                    <%= f.text_field :user_id, value: user.name, id:"user-id" %>
+                    <%= f.text_field :user_id, value: user.name, id:"user-id#{u}" %>
                   </div>
                   <div class="form-group">
-                    <%= f.text_field :datetime_in_actual, value: work.datetime_in_actual, id:"in-time" %>
+                    <%= f.text_field :datetime_in_actual, value: work.datetime_in_actual, id:"in-time#{u}" %>
                   </div>
                   <div class="form-group">
-                    <%= f.text_field :datetime_out_actual, value: work.datetime_out_actual, id:"out-time" %>
+                    <%= f.text_field :datetime_out_actual, value: work.datetime_out_actual, id:"out-time#{u}" %>
                   </div>
-                  <div class='login-btn'>
-                    <%= f.submit "保存" ,class:"login-red-btn", id:"btn" %>
+                  <div class="form-group">
+                    <span id="holiday-check">休みにする</span>
+                    <%= f.check_box :holiday_actual, id:"holiday#{u}",:as => :boolean %>
                   </div>
                 <% end %>
               </div>
@@ -60,19 +61,17 @@
                 <%# <%= render 'layouts/error_messages', model: f.object %>
                 <% if work.user_id == user.id%>
                   <div class="form-group">
-                    <%= f.text_field :user_id, value: user.name, id:"user-id" %>
+                    <%= f.text_field :user_id, value: user.name, id:"user-id#{u}" %>
                   </div>
                   <div class="form-group">
-                    <%= f.text_field :datetime_in_actual, type:"hidden", id:"in-time" %>
+                    <%= f.text_field :datetime_in_actual, class:"hidden", id:"in-time#{u}" %>
                   </div>
                   <div class="form-group">
-                    <%= f.text_field :datetime_out_actual, type:"hidden", id:"out-time" %>
+                    <%= f.text_field :datetime_out_actual, class:"hidden", id:"out-time#{u}" %>
                   </div>
                   <div class="form-group">
-                    <%= f.check_box :holiday_actual, id:"holiday",:as => :boolean, checked:true %>
-                  </div>
-                  <div class='login-btn'>
-                    <%= f.submit "保存" ,class:"login-red-btn", id:"btn" %>
+                    <span id="holiday-check">休みを取り消す</span>
+                    <%= f.check_box :holiday_actual, :as => :boolean, checked:true, id:"holiday#{u}" %>
                   </div>
                 <% end %>
               </div>
@@ -80,6 +79,9 @@
           <% end %>
 
         <% end %>
+                  <div class='login-btn'>
+                    <%= f.submit "保存" ,class:"login-red-btn", id:"btn" %>
+                  </div>
       <% end %>
     </div>
   </div>
