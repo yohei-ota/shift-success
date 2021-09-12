@@ -80,7 +80,7 @@
               <div class='form-text-wrap'>
                 <label class="form-text">休日希望</label>
               </div>
-              <%= i.check_box :holiday, checked_value: "1", unchecked_value: "0" %>
+              <%= i.check_box :holiday, :as => :boolean %>
             </div>
             <% @today += 1 %>
           <% end %>

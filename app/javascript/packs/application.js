@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../make_shift")
+require("../edit_shift")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
