@@ -56,6 +56,15 @@
         </tbody>
       </table>
 
+      <% @works.each do |work| %>
+        <div>
+          <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+          <%= work.date.strftime("%m/%d(#{wd[work.date.wday]})") %>
+          <%= work.datetime_in_actual[0,2] %> : <%= work.datetime_in_actual[2,3] %> ~ 
+          <%= work.datetime_out_actual[0,2] %> : <%= work.datetime_out_actual[2,3] %>
+        </div>
+      <% end %>
+
     </div>
  </div>
 </div>
