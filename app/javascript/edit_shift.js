@@ -10,19 +10,29 @@ function shift() {
     // let holiday = document.getElementById("holiday") // 入力フォームの休み有無
     // let shift = document.getElementById("shift") // その日のシフト希望一覧を表示するdiv要素
     // const btn = document.getElementById("btn") // 保存ボタン
-    // let colorCell = [] // 色付きのセル
+    const mode = document.getElementById("over-early-mode")
+    let colorCell = [] // 色付きのセル
     
-    
-    
-    timeId.forEach(function(target){ // セルがクリックされたら色がつくor消える
-      target.addEventListener("mousedown", function(){
-        if(target.getAttribute("style") === "background-color:#004e0a;"){
-          this.removeAttribute("style", "background-color:#004e0a;")
-        } else {
-          this.setAttribute("style", "background-color:#004e0a;")
-        }
-      })
+
+    mode.addEventListener("click", () =>{
+      console.log(mode.getAttribute("style"))
+      if(mode.getAttribute("style") == "background-color:#9acd32;"){
+        mode.setAttribute("style", "background-color:#f8b1f2")
+      } else {
+        mode.setAttribute("style", "background-color:#9acd32;")
+      }
     })
+    
+    
+    // timeId.forEach(function(target){ // セルがクリックされたら色がつくor消える
+    //   target.addEventListener("mousedown", function(){
+    //     if(target.getAttribute("style") === "background-color:#004e0a;"){
+    //       this.removeAttribute("style", "background-color:#004e0a;")
+    //     } else {
+    //       this.setAttribute("style", "background-color:#004e0a;")
+    //     }
+    //   })
+    // })
 
 
 
@@ -155,6 +165,13 @@ function shift() {
                   target.removeAttribute("style", "background-color:#004e0a;")
                 }
               }
+              target.addEventListener("mousedown", function(){
+                if(target.getAttribute("style") === "background-color:#004e0a;"){
+                  this.removeAttribute("style", "background-color:#004e0a;")
+                } else {
+                  this.setAttribute("style", "background-color:#004e0a;")
+                }
+              })
             })
           }
         }

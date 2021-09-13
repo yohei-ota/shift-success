@@ -4,6 +4,7 @@
     <div class="back-box">
       <h1 class="admin-title"><%="シフト編集トップ#{current_admin.name}" %></h1>
       <input type="date", value="<%= @today %>", id="calender">
+      <button type="button", id="over-early-mode", style="background-color:#9acd32;">残業・早上がりモード</button>
         <div class="table-scroll">
           <table class="today-shift", id="table"> 
             <tr>
@@ -56,11 +57,10 @@
               <% end %>
             </div>
           <% end %>
-
         <% end %>
-                  <div class='login-btn'>
-                    <%= f.submit "保存" ,class:"login-red-btn", id:"btn" %>
-                  </div>
+        <div class='login-btn'>
+          <%= f.submit "保存" ,class:"login-red-btn", id:"btn" %>
+        </div>
       <% end %>
     </div>
   </div>
