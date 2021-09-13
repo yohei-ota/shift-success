@@ -22,10 +22,11 @@ class ActualWorksController < ApplicationController
 
   def edit
     @today = Date.today
-    @works = ActualWork.where(group_id: current_admin.group_id).where("date = ?", Date.today)
+    @works = ActualWork.where(group_id: current_admin.group_id).where("date >= ?", Date.today)
     @users = User.where(group_id: current_admin.group_id)
     gon.works = @works
     gon.users = @users
+    gon.admin = current_admin
   end
 
   def update
