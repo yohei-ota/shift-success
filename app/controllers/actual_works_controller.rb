@@ -30,13 +30,16 @@ class ActualWorksController < ApplicationController
   end
 
   def update
-
+    binding.pry
+    works = ActualWork.where(group_id: params[:id]).where(user_id: params[:actual_work][:user_id]).where(date: params[:actual_work][:date])
+    works.update(actual_work_params)
+    redirect_to edit_actual_work_path
   end
 
 
   private
 
   def actual_work_params
-    params.require(:actual_work).permit(:user_id, :date, :datetime_in_actual, :datetime_out_actual, :holiday_actual).merge(group_id: params[:id])
+    params.require(:actual_work).permit(:user_id, :date, :datetime_in_actual, :datetime_out_actual, :over_early_time, :holiday_actual).merge(group_id: params[:id])
   end
 end
