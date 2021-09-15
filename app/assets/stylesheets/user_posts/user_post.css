@@ -1,10 +1,31 @@
 .smart-menu {
-  display: flex;
+  /* display: flex; */
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background-color: #ffb36b;
 }
-
+.smart-app-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 20px;
+  /* padding-left: 50px; */
+}
+.smart-app-title-text{
+  font-size: 25px;
+  color: #444;
+  font-family: 'Patrick Hand', cursive;
+}
+.smart-icon {
+  width: 40px;
+  height: 40px;
+}
+.user-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 30px;
+}
 .smart-sub-menu {
   display: flex;
   align-items: flex-end;

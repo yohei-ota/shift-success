@@ -1,19 +1,28 @@
 <header>
   <div class="smart-menu">
-    <div class="smart-sub-menu">
-      <div class="side-link"><%= "＜#{@today.month - 1}月" %></div>
+    <div class='smart-app-title'>
+      <%= image_tag 'shift_success_logo_removebg.png', class:'smart-icon' %>
+      <h1 class='smart-app-title-text'>
+        Shift Success
+      </h1>
     </div>
-    <div class="smart-sub-menu">
-      <div class="sub-title"><%= @today.strftime('%Y年%m月') %></div>
-    </div>
-    <div class="smart-sub-menu">
-      <div class="side-link"><%= "#{@today.month + 1}月＞" %></div>
+    <div class="user-header">
+      <div class="smart-sub-menu">
+        <div class="side-link"><%= "＜#{@today.month - 1}月" %></div>
+      </div>
+      
+      <div class="smart-sub-menu">
+        <div class="side-link"><%= "#{@today.month + 1}月＞" %></div>
+      </div>
     </div>
   </div>
 </header>
 
 <div class="background">
   <div class="make-user-main">
+      <div>
+        <div class="sub-title"><%= @today.strftime('%Y年%m月') %></div>
+      </div>
     <div class="make-user-sub">
       <table class="shift-table">
         <tr>
