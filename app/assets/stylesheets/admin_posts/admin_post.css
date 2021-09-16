@@ -1,3 +1,23 @@
+
+.admin-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  height: 80px;
+  background-color: #ffb36b;
+}
+.admin-title-text {
+  font-size: 20px;
+  color: #444;
+  font-family: 'Patrick Hand', cursive;
+}
+.smart-icon {
+  width: 40px;
+  height: 40px;
+}
+
 .make-admin-main {
   height: 100%;
   width: 100vw;
@@ -14,7 +34,7 @@
   background-color: #dfdede;
   border-radius: 20px;
 }
-.admin-title {
+.admin-sub-title {
   font-size: 40px;
   margin: 20px 40px 30px;
 }

@@ -10,6 +10,7 @@
   right       : 0;
   height      : 105px;
   z-index     : 10;
+  
 }
 .smart-app-title {
   display: flex;
@@ -143,6 +144,7 @@
   list-style: none;
   text-align: center;
 }
+.menu-list,
 .bottom-name {
   display: block;
   color: #444;
