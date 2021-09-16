@@ -1,15 +1,24 @@
+.header{
+  
+}
 .smart-menu {
   /* display: flex; */
   align-items: center;
   /* justify-content: space-between; */
   background-color: #ffb36b;
+  border-bottom: #999 solid 3px;
+  position    : fixed;
+  top         : 0;
+  left        : 0;
+  right       : 0;
+  height      : 105px;
+  z-index     : 10;
 }
 .smart-app-title {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-top: 20px;
-  /* padding-left: 50px; */
 }
 .smart-app-title-text{
   font-size: 25px;
@@ -32,12 +41,48 @@
   height: 80px;
   margin-bottom: 15px;
 }
-
+.current-month-title {
+  display: flex;
+  justify-content: center;
+}
+.sub-title {
+  display: inline-block;
+  /* text-align: center;
+  justify-content: center; */
+  background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%);
+  margin: 40px 0 5px 0;
+  font-size: 25px;
+}
+.prev-next-month {
+  font-size: 20px;
+  color: #888;
+}
+.prev-next-month-sun {
+  font-size: 20px;
+  color: pink;
+}
+.prev-next-month-sat {
+  font-size: 20px;
+  color: rgb(152, 206, 250);
+}
+.current-month {
+  font-size: 20px;
+  font-weight: bold;
+}
+.current-month-sun {
+  font-size: 20px;
+  color: rgb(247, 55, 55);
+}
+.current-month-sat {
+  font-size: 20px;
+  color: rgb(66, 66, 252);
+}
 .make-user-main {
-  height: 80%;
+  height: 100%;
   width: 100%;
-  margin: 50px 10px;
-  background-color: #dfdede;
+  margin: 20px;
+  border-radius: 20px;
+  background-color: rgba(240, 240, 240, 0.8);
   display: flex;
   overflow-x : auto;
   justify-content: center;
@@ -47,9 +92,29 @@
   background-color: white;
   table-layout: fixed;
   border: double 10px #333;
-  margin: 60px 20px;
+  margin-bottom: 20px;
 }
-
+.monthly-shift {
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+  background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%);
+}
+.finished-shift-day {
+  font-size: 20px;
+  color: rgb(250, 144, 144);
+  margin: 5px;
+}
+.today-shift-day {
+  font-size: 23px;
+  color: #333;
+  margin: 5px;
+}
+.shift-day {
+  font-size: 20px;
+  color: #333;
+  margin: 5px;
+}
 .border-th {
   caret-color: transparent;
 }
@@ -60,12 +125,14 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  background: white;
+  background: rgb(190, 190, 190);
+  height: 80px;
   width: 100%;
 }
 .bottom-list {
-  display: table;
-  table-layout: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 5px;
   list-style: none;
@@ -73,5 +140,6 @@
 }
 .bottom-name {
   display: block;
+  color: #444;
   font-size: 20px;
 }
