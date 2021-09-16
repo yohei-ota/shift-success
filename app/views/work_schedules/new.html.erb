@@ -1,13 +1,19 @@
-<header>
+<header class="header">
   <div class="smart-menu">
-    <div class="smart-sub-menu">
-      <div class="side-link"><%= "＜#{@today.month - 1}月" %></div>
+    <div class='smart-app-title'>
+      <%= image_tag 'shift_success_logo_removebg.png', class:'smart-icon' %>
+      <h1 class='smart-app-title-text'>
+        Shift Success
+      </h1>
     </div>
-    <div class="smart-sub-menu">
-      <div class="sub-title"><%= @today.strftime('%Y年%m月') %></div>
-    </div>
-    <div class="smart-sub-menu">
-      <div class="side-link"><%= "#{@today.month + 1}月＞" %></div>
+    <div class="user-header">
+      <div class="smart-sub-menu">
+        <div class="side-link"><%= "＜#{@today.month - 1}月" %></div>
+      </div>
+      
+      <div class="smart-sub-menu">
+        <div class="side-link"><%= "#{@today.month + 1}月＞" %></div>
+      </div>
     </div>
   </div>
 </header>
@@ -15,17 +21,20 @@
 <div class="background">
   <div class="make-user-main">
     <div class="make-user-sub">
+      <div class="current-month-title">
+        <div class="sub-title"><%= @today.strftime('%Y年%m月') %></div>
+      </div>
       <table class="shift-table">
         <tr>
-          <th>日</th>
-          <th>月</th>
-          <th>火</th>
-          <th>水</th>
-          <th>木</th>
-          <th>金</th>
-          <th>土</th>
+          <th class="current-month-sun">日</th>
+          <th class="current-month">月</th>
+          <th class="current-month">火</th>
+          <th class="current-month">水</th>
+          <th class="current-month">木</th>
+          <th class="current-month">金</th>
+          <th class="current-month-sat">土</th>
         </tr>
-        <% start_month = @today.at_beginning_of_month.at_beginning_of_week - 1 %>
+        <% start_month = @today.at_beginning_of_month.at_beginning_of_week - 1 %> <%# 今月の最初の週の日曜日の日付 %>
         <%# ７*５の表にカレンダーを作成 %>
         <% 35.times do |i|%>
           <%# 週初めに<tr>開始タグをつける %>
@@ -34,9 +43,21 @@
           <% end %>
           <%# 先月・来月にはclass属性を付与 %>
           <% if start_month.month == @today.month - 1 || start_month.month == @today.month + 1 %>
-            <td class="prev-next-month"><%= start_month.strftime("%d").to_i %></td>
+            <% if start_month.wday == 0 %>
+              <td class="prev-next-month-sun"><%= start_month.strftime("%d").to_i %></td>
+            <% elsif start_month.wday == 6 %>
+              <td class="prev-next-month-sat"><%= start_month.strftime("%d").to_i %></td>
+            <% else%>
+              <td class="prev-next-month"><%= start_month.strftime("%d").to_i %></td>
+            <% end %>
           <% else %>
-            <td><%= start_month.strftime("%d").to_i %></td>
+            <% if start_month.wday == 0 %>
+              <td class="current-month-sun"><%= start_month.strftime("%d").to_i %></td>
+            <% elsif start_month.wday == 6%>
+              <td class="current-month-sat"><%= start_month.strftime("%d").to_i %></td>
+            <% else %>
+              <td class="current-month"><%= start_month.strftime("%d").to_i %></td>
+            <% end %>
           <% end %>
           <%# 週終わりに</tr>閉じタグをつける %>
           <% if i % 7 == 6 %>
@@ -55,44 +76,46 @@
               シフト希望申請
             </h1>
           </div>
-          <div class='login-flash-message'>
-            <%= flash[:notice] %>
-            <%= flash[:alert] %>
-          </div>
           <%= f.fields_for :collections do |i| %>
-          <%= render 'layouts/error_messages', model: i.object %>
             <% wday = @today.wday %>
             <% wdays = [ "(日)",  "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]%>
-            <%= "#{@today.month}月 #{@today.day}日 #{wdays[wday]}" %>
-            <div class="form-group">
-              <div class='form-text-wrap'>
-                <label class="form-text">開始時間</label>
+            <%= render 'layouts/error_messages', model: i.object %>
+            <div class="shift-form">
+              <div class="form-day">
+                <%= "#{@today.month}月 #{@today.day}日 #{wdays[wday]}" %>
               </div>
-              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}} %>
-            </div>
-            <div class="form-group">
-              <div class='form-text-wrap'>
-                <label class="form-text">終了時間</label>
+              <div class="form-group">
+                <div class='form-text-wrap'>
+                  <label class="form-text">開始時間</label>
+                </div>
+                <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}}, {class: "select-form"} %>
               </div>
-              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}} %>
-            </div>
-            <div class="form-group">
-              <div class='form-text-wrap'>
-                <label class="form-text">休日希望</label>
+              <div class="form-group">
+                <div class='form-text-wrap'>
+                  <label class="form-text">終了時間</label>
+                </div>
+                <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}}, {class: "select-form"} %>
               </div>
-              <%= i.check_box :holiday, :as => :boolean %>
+              <div class="form-group">
+                <div class="check-box-form">
+                  <%= i.check_box :holiday, :as => :boolean, class:"check-box" %>
+                  <div class='form-text-wrap'>
+                    <label class="form-text">休日希望</label>
+                  </div>
+                </div>
+              </div>
+              <% @today += 1 %>
             </div>
-            <% @today += 1 %>
           <% end %>
             <div class="form-group">
-              <div class='form-text-wrap'>
-                <label class="form-text">コメント</label>
+              <div class='form-comment'>
+                <label class="comment">コメント</label>
               </div>
-              <%= f.text_area :add_request, placeholder:"コメントする", maxlength:"40" %>
+              <%= f.text_area :add_request, placeholder:"コメントする", maxlength:"40", class:"comment-area" %>
             </div>
 
-          <div class='login-btn'>
-            <%= f.submit "保存" ,class:"login-red-btn" %>
+          <div class='form-group'>
+            <%= f.submit "送信" ,class:"submit-btn" %>
           </div>
         </div>
       <% end %>
@@ -108,34 +131,22 @@
 
 
 <ul class="bottom-menu">
-	<li class="bottom-list">
-		<a href="ホーム画面URL"><i class="fas"></i><br>
-		<span class="bottom-name">ホーム</span></a>
-	</li>
-	<li class="bottom-list">
-		<a href="飛ばしたいページのURL"><i class="アイコンのコード"></i><br>
-		<span class="bottom-name">スケジュール画面</span></a>
-	</li>
-	<li class="bottom-list">
-		<a href="飛ばしたいページのURL"><i class="アイコンのコード"></i><br>
-		<span class="bottom-name">シフト希望申請</span></a>
-	</li>
   <li class="bottom-list">
-		<a href="飛ばしたいページのURL"><i class="アイコンのコード"></i><br>
-		<span class="bottom-name">就業履歴</span></a>
-	</li>
-	<li class="bottom-list">
-		<a href="飛ばしたいページのURL"><i class="アイコンのコード"></i><br>
-		<span class="bottom-name">チャット</span></a>
-	</li>
+    <%= link_to "ホーム", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
+  </li>
   <li class="bottom-list">
-		<a href="飛ばしたいページのURL"><i class="アイコンのコード"></i><br>
-		<span class="bottom-name">お給料</span></a>
-	</li>
-	<li class="bottom-list">
-		<%= link_to "シフト希望", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
-	</li>
+    <%= link_to "就業履歴", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
+  </li>
   <li class="bottom-list">
-		<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bottom-name" %><i class="アイコンのコード"></i><br>
-	</li>
+    <%= link_to "チャット", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
+  </li>
+  <li class="bottom-list">
+    <%= link_to "お給料", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
+  </li>
+  <li class="bottom-list">
+    <%= link_to "シフト希望", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
+  </li>
+  <li class="bottom-list">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bottom-name" %><i class="アイコンのコード"></i><br>
+  </li>
 </ul>
