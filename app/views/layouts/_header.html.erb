@@ -12,13 +12,16 @@
     <div class="box">
       <ul class="inner-nav">
         <li class="menu">
+          <%= link_to "ホーム", admin_posts_path(current_admin.group_id), class: "menu-list" %>
+        </li>
+        <li class="menu">
           <%= link_to "シフト作成", new_actual_work_path(current_admin.group_id), class: "menu-list" %>
         </li>
         <li class="menu">
-          <%= link_to "従業員管理", "#", class: "menu-list" %>
+          <%= link_to "シフト編集", edit_actual_work_path(current_admin.group_id), class: "menu-list" %>
         </li>
         <li class="menu">
-          <%= link_to "日報", edit_actual_work_path(current_admin.group_id), class: "menu-list" %>
+          <%= link_to "従業員管理", "#", class: "menu-list" %>
         </li>
         <li class="menu">
           <%= link_to "締め処理", "#", class: "menu-list" %>

@@ -9,13 +9,19 @@ function shift() {
     let outTime = document.getElementById("out-time") // 入力フォームの終時間
     let holiday = document.getElementById("holiday") // 入力フォームの休み有無
     let shift = document.getElementById("shift") // その日のシフト希望一覧を表示するdiv要素
+    const shiftForm = document.getElementById("shift-form") // フォーム
+    const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
     const btn = document.getElementById("btn") // 保存ボタン
     let colorCell = [] // 色付きのセル
     
-    
+    shift.setAttribute("style", "display:none")
+    shiftForm.setAttribute("style","display:none")
     
     date.addEventListener("input", () => {
       shift.innerHTML = "" // 表示されているシフト希望をリセット
+      shiftForm.removeAttribute("style","display:none")
+      shift.removeAttribute("style", "display:none")
+      calender.setAttribute("style", "display:none")
       timeId.forEach(function(target){ // 背景色をリセット
         target.removeAttribute("style", "background-color:#004e0a")
       })
@@ -26,23 +32,25 @@ function shift() {
           if((schedule["datetime_in"].substr(0,10) === date.value) && (schedule["user_id"] === user["id"]) ){ // カレンダーで選択した日付のシフト希望表示
             if(schedule["holiday"] === true ){ // 休み希望がtrueなら予定休みを表示
               let html = `
-              <div>
+              <div class="shift-one">
               ${user["name"]}の予定 休み
               </div>
               `
               shift.insertAdjacentHTML("beforeend", html)
             } else { //  休み希望がfalseならその日の希望時間を表示
               var html = `
-              <div>
-              ${user["name"]}の予定
-              ${schedule["datetime_in"].substr(5,2)}月
-              ${schedule["datetime_in"].substr(8,2)}日
-              ${schedule["datetime_in"].substr(11,2)} : 
-              ${schedule["datetime_in"].substr(14,2)} ~ 
-              ${schedule["datetime_out"].substr(11,2)} : 
-              ${schedule["datetime_out"].substr(14,2)}
-              ${schedule["add_request"]}
-              </div>
+                <div class="today-shift-day">
+                  <div class="shift-one">
+                    ${user["name"]}の予定
+                    ${schedule["datetime_in"].substr(5,2)}月
+                    ${schedule["datetime_in"].substr(8,2)}日
+                    ${schedule["datetime_in"].substr(11,2)} : 
+                    ${schedule["datetime_in"].substr(14,2)} ~ 
+                    ${schedule["datetime_out"].substr(11,2)} : 
+                    ${schedule["datetime_out"].substr(14,2)}
+                    ${schedule["add_request"]}
+                  </div>
+                </div>
               `
               shift.insertAdjacentHTML("beforeend", html)
               let startCell = Number(schedule["datetime_in"].substr(11,2) + schedule["datetime_in"].substr(14,2)) // 表示されている希望時間の数値 12:34 => 1234

@@ -3,9 +3,12 @@
   <div class="make-admin-main">
     <div class="back-box">
       <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <h1 class="admin-sub-title"><%= "#{@today.strftime("%m/%d(#{wd[@today.wday]})")}のシフト" %></h1>
+      <div class="box-head">
+        <h1 class="admin-sub-title"><%= "#{@today.strftime("%m/%d(#{wd[@today.wday]})")}のシフト" %></h1>
+        <h1 class="admin-group-name"><%= "#{current_admin.group.group_name}"%></h1>
+      </div>
       <div class="table-scroll">
-        <table class="today-shift"> 
+        <table class="today-shift-table"> 
           <tbody>
             <tr>
               <th class="table-head">名前</th>
@@ -25,29 +28,33 @@
         </table>
       </div>
 
+      <div class="today-shift-list">
         <% @works.each_with_index do |work, w| %>
           <% @users.each do |user| %>
             <div class="today-shift-day">
               <% if work.user_id == user.id %>
-                <span>
-                  <%= user.name %>
-                </span>
-                <% if work.holiday_actual == true %>
-                  <span>
-                    休み
+                <div class="shift-one">
+                  <span class="user-name-list">
+                    <%= user.name %>
                   </span>
-                <% else %>
-                  <span>
-                    <%= work.datetime_in_actual[0,2] %> : <%= work.datetime_in_actual[2,3] %> ~ 
-                  </span>
-                  <span>
-                    <%= work.datetime_out_actual[0,2] %> : <%= work.datetime_out_actual[2,3] %>
-                  </span>
-                <% end %>
+                  <% if work.holiday_actual == true %>
+                    <span>
+                      休み
+                    </span>
+                  <% else %>
+                    <span>
+                      <%= work.datetime_in_actual[0,2] %> : <%= work.datetime_in_actual[2,3] %> ~ 
+                    </span>
+                    <span>
+                      <%= work.datetime_out_actual[0,2] %> : <%= work.datetime_out_actual[2,3] %>
+                    </span>
+                  <% end %>
+                </div>
               <% end %>
             </div>
           <% end %>
         <% end %>
+      </div>
     </div>
   </div>
 </div>
