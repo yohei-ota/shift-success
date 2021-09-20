@@ -42,12 +42,8 @@
                       休み
                     </span>
                   <% else %>
-                    <span>
-                      <%= work.datetime_in_actual[0,2] %> : <%= work.datetime_in_actual[2,3] %> ~ 
-                    </span>
-                    <span>
-                      <%= work.datetime_out_actual[0,2] %> : <%= work.datetime_out_actual[2,3] %>
-                    </span>
+                    <span><%= work.datetime_in_actual[0,2] %> : <%= work.datetime_in_actual[2,3] %> ~ </span>
+                    <span><%= work.datetime_out_actual[0,2] %> : <%= work.datetime_out_actual[2,3] %></span>
                   <% end %>
                 </div>
               <% end %>

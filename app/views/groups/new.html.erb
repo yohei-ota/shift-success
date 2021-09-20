@@ -13,11 +13,9 @@
       <%= render 'layouts/error_messages', model: f.object, locals: { model: @group } %>
 
       <div class="form-group">
-          <label class="form-sub-text">※ 登録済みの方も入力して下さい</label>
+        <label>※ 登録済みの方も入力して下さい</label>
         <%= f.text_field :group_name, class:"input-group", placeholder:"例) 〇〇株式会社", maxlength:"40" %>
       </div>
-      
-
       <div class="form-group">
         <%= f.submit "次へ" ,class:"btn" %>
       </div>

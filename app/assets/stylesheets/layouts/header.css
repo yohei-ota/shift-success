@@ -96,16 +96,14 @@ th {
 .form-group{
   display: inline-block;
   align-items: center;
+  font-size: medium;
+  color: #333;
 }
 .form-main {
   margin: 30px 0 10px;
 }
 .form-main-text {
   margin: 55px 0 30px;
-}
-.form-sub-text {
-  font-size: medium;
-  color: #333;
 }
 .header {
   width: 100%;

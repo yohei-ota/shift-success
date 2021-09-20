@@ -121,16 +121,10 @@
                 <%= "#{(@today+14).month}/#{(@today+14).day}#{wdays[wday]}" %>
               </div>
               <div class="form-group">
-                <%# <div class='form-text-wrap'>
-                  <label class="form-text">開始</label>
-                </div> %>
                 <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}}, {class: "select-form"} %>
               </div>
               <div>~</div>
               <div class="form-group">
-                <%# <div class='form-text-wrap'>
-                  <label class="form-text">終了</label>
-                </div> %>
                 <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.year, month: @today.month, day: @today.day + 0.hour}}, {class: "select-form"} %>
               </div>
               <div class="form-group">

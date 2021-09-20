@@ -8,56 +8,33 @@
       <%= render 'layouts/error_messages', model: f.object, locals: { model: @admin } %>
 
       <div class="form-group">
-        <div class="form-sub-text">
-          <label>氏名</label>
-          <span>必須</span>
-        </div>
+        <label>氏名</label><span>必須</span>
         <%= f.text_field :name, class:"input-group", id:"name", placeholder:"例)田中太郎", maxlength:"40", autofocus: true %>
       </div>
       <div class="form-group">
-        <div class="form-sub-text">
-          <label>メールアドレス</label>
-          <span>必須</span>
-        </div>
+        <label>メールアドレス</label><span>必須</span>
         <%= f.email_field :email, class:"input-group", id:"email", placeholder:"PC・携帯どちらでも可" %>
       </div>
       <div class="form-group">
-        <div class="form-sub-text">
-          <label>パスワード</label>
-          <span>必須</span>
-        </div>
+        <label>パスワード</label><span>必須</span>
         <%= f.password_field :password, class:"input-group", id:"password", placeholder:"6文字以上の半角英数字" %>
       </div>
       <div class="form-group">
-        <div class="form-sub-text">
-          <label>パスワード(確認)</label>
-          <span>必須</span>
-        </div>
+        <label>パスワード(確認)</label><span>必須</span>
         <%= f.password_field :password_confirmation, class:"input-group", id:"password-confirmation", placeholder:"同じパスワードを入力して下さい" %>
       </div>
-
       <div class="form-group">
-        <div class="form-sub-text">
-          <label>暗証番号</label>
-          <span>必須</span>
-        </div>
+        <label>暗証番号</label><span>必須</span>
         <%= f.text_field :code, class:"input-group", id:"group-name", placeholder:"半角数字4文字以上", minlength: "4" %>
       </div>
       <div class="form-group">
-        <div class="form-sub-text">
-          <label>締め日(1〜31)</label>
-          <span>必須</span>
-        </div>
+        <label>締め日(1〜31)</label><span>必須</span>
         <%= f.number_field :dead_line, class:"input-group", id:"dead-line", placeholder:"選択してください",min: 1, max: 31 %>
       </div>
       <div class="form-group">
-        <div class="form-sub-text">
-          <label>給料日(1〜31)</label>
-          <span>必須</span>
-        </div>
+        <label>給料日(1〜31)</label><span>必須</span>
         <%= f.number_field :pay_day, class:"input-group", id:"pay-day", placeholder:"選択してください",min: 1, max: 31 %>
       </div>
-
       <div class='form-group'>
         <%= f.submit "会員登録" ,class:"btn" %>
       </div>
