@@ -3,7 +3,7 @@
   <div class="make-admin-main">
     <div class="back-box">
       <div class="box-head">
-        <h1 class="admin-sub-title"><%="シフト編集トップ#{current_admin.name}" %></h1>
+        <h1 class="admin-sub-title"><%="シフト編集 #{current_admin.name}" %></h1>
         <div class="calender-field">
           <input type="date", class="calender" id="calender">
           <span class="calender-comment", id="calender-comment">⬅ 日付を選択してください</span>
@@ -14,16 +14,16 @@
         <button type="button", class="mode-btn" id="over-early-mode", style="background-color:#9dda23;">残業モード</button>
       </div>
         <div class="table-scroll">
-          <table class="today-shift-table", id="table"> 
-            <tr>
+          <table class="shift-table", id="table"> 
+            <tr class="tr-wrap">
               <th class="table-head">名前</th>
               <% 25.times do |time| %>
                   <th colspan="2"><%= "#{time}" %></th>
               <% end %>
             </tr>
             <% @users.each_with_index do |users, f| %>
-            <tbody class="row-group", id=<%= "group#{f}" %>>
-              <tr class="time-list">
+            <tbody id=<%= "group#{f}" %>>
+              <tr>
                 <td class="table-head", id=<%= "user#{f}" %>><%= users.name %></td>
                 <% 50.times do |i|%>
                   <td class="border-th", id=<%= "#{i}" %>><%=""%></td>

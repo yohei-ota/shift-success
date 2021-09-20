@@ -1,4 +1,13 @@
-
+.user-sign-in-main {
+  background-color: #f8f8f8;
+  border: #333 solid 1px;
+  height: 500px;
+  width: 450px;
+}
+.wrap {
+  position: relative;
+  min-height: 100%;
+}
 .smart-app-title {
   display: flex;
   align-items: flex-end;
@@ -11,43 +20,30 @@
   color: #444;
   font-family: 'Patrick Hand', cursive;
 }
-.smart-icon {
-  width: 40px;
-  height: 40px;
-}
 .user-header {
   display: flex;
   align-items: flex-end;
   margin-left: 100px;
   height: 30px;
 }
-.smart-sub-menu {
+.current-group {
+  font-size: 30px;
+  margin-left: 10px;
+}
+.make-user-sub {
+  height: 90%;
+  width: 90%;
   display: flex;
-  align-items: flex-end;
-  height: 80px;
-  margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: scroll;
 }
-.current-month-title {
-  /* display: flex;
-  justify-content: center; */
-  margin-left: 100px;
-}
-.sub-title {
-  display: inline-block;
-  /* text-align: center;
-  justify-content: center; */
-  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
-  margin: 40px 0 5px 0;
-  font-size: 25px;
+.shift-calender {
+  width: 50%;
 }
 .page-head {
   margin-top: 20px;
   display: flex;
-}
-.current-group {
-  font-size: 30px;
-  margin-left: 10px;
-  /* padding-top: 10px; */
 }
 .current-user-name {
   display: flex;
@@ -56,8 +52,116 @@
   margin-left: 15px;
   margin-bottom: 5px;
 }
-
-
+.current-month-title {
+  margin-left: 100px;
+}
+.sub-title {
+  display: inline-block;
+  margin: 40px 0 5px 0;
+  font-size: 23px;
+  color: #333333;
+}
+.current-month-sun,
+.current-month-sat,
+.current-month {
+  font-size: 18px;
+  text-align: center;
+  border-bottom: #333 solid 1px;
+  border-left: rgb(200, 200, 200) solid 1px;
+  padding: 2px 0;
+}
+.prev-next-month-sun,
+.prev-next-month-sat,
+.prev-next-month,
+.current-month-sun-num,
+.current-month-sat-num,
+.current-month-num {
+  border-bottom: solid 1px rgb(200, 200, 200);
+  border-left: solid 1px rgb(200, 200, 200);
+  width: 130px;
+  height: 130px;
+}
+.shift-new-calender {
+  font-size: 15px;
+  background-color: rgb(255, 237, 204);
+  color: #888;
+  font-weight: lighter;
+  margin-top: 10px;
+  padding:0 8px;
+}
+.new-form-wrap {
+  margin-top: 50px;
+  background-color: #f8f8f8;
+  border: #333 solid 1px;
+  padding-bottom: 20px;
+}
+.form-header-text {
+  display: inline-block;
+  color: #333;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.form-day {
+  font-size: 16px;
+  color: #555;
+  font-weight: bold;
+}
+.select-form{
+  width: 60px;
+  border: #999 solid 1px;
+  border-radius: 10px;
+  text-align: center;
+}
+.check-box-form {
+  display: flex;
+  align-items: center;
+}
+.form-text{
+  font-size: 15px;
+  color: #555;
+  font-weight: bold;
+}
+.comment {
+  color: #333;
+  font-size: 18px;
+}
+.comment-area {
+  width: 400px;
+  height: 100px;
+  border: #999 solid 1px;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.footer{
+  z-index: 10;
+}
+.bottom-menu {
+  display: flex;
+  position: fixed;
+  left: 0;
+  background: rgb(190, 190, 190);
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+}
+.bottom-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  list-style: none;
+  text-align: center;
+}
+.bottom-name {
+  display: block;
+  color: #444;
+  font-size: 20px;
+}
+.make-shift {
+  width: 40%;
+}
 .prev-next-month {
   font-size: 20px;
   color: rgb(204, 204, 204);
@@ -84,7 +188,6 @@
   vertical-align: top;
   padding-left: 5px;
   padding-top: 5px;
-  /* font-weight: bold; */
 }
 .current-month-sun{
   color: rgb(247, 55, 55);
@@ -109,60 +212,16 @@
   padding-left: 5px;
   padding-top: 5px;
 }
-
-.make-user-sub {
-  height: 90%;
-  width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: scroll;
-}
 .user-calender {
   width: 90%;
-  /* height: 70%; */
 }
 .make-user-main {
   height: 90%;
   width: 90%;
-  /* margin: 20px; */
-  /* padding-bottom: 60px; */
-  /* background-color: rgba(240, 240, 240, 0.8); */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: scroll;
-}
-.shift-form{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding-top: 12px;
-  padding-bottom: 13px;
-}
-.today-shift-table {
-  background-color: white;
-  table-layout: fixed;
-  width: 100%;
-  border: solid 2px #333;
-}
-.shift-table {
-  background-color: white;
-  /* display: flex;
-  justify-content: center;
-  table-layout: fixed; */
-  border: #333 solid 2px;
-  /* margin-bottom: 20px; */
-  width: 100%;
-  /* height: 100px; */
-}
-.shift-new-calender {
-  font-size: 15px;
-  background-color: rgb(255, 237, 204);
-  color: #888;
-  font-weight: lighter;
-  margin-top: 10px;
-  padding:0 8px;
 }
 .shift-in-calender {
   font-size: 20px;
@@ -171,129 +230,4 @@
   font-weight: lighter;
   margin-top: 10px;
   padding:0 8px;
-  
-}
-.monthly-shift {
-  font-size: 22px;
-  color: #333;
-  font-weight: bold;
-  text-align: center;
-  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
-}
-.monthly-shift-wrap {
-  background-color: #f8f8f8;
-  border: #333 solid 1px;
-  margin: 50px 0;
-  width: 30%;
-  /* height: 80%; */
-  padding: 20px;
-  padding-left: 40px;
-}
-.finished-shift-day {
-  font-size: 20px;
-  color: rgb(250, 144, 144);
-  margin: 5px;
-}
-.today-shift-day {
-  /* display: inline-block; */
-  /* background: linear-gradient(transparent 90%, rgb(185, 185, 185) 70%); */
-  font-size: 20px;
-  color: #333;
-  margin: 5px;
-}
-.shift-day {
-  font-size: 20px;
-  color: #333;
-  margin: 5px;
-}
-.shift-calender {
-  width: 50%;
-  /* height: 50%; */
-}
-.hidden-form{
-  width: 200px;
-  height: 0;
-}
-
-.bottom-list {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 5px;
-  list-style: none;
-  text-align: center;
-}
-.menu-list,
-.bottom-name {
-  display: block;
-  color: #444;
-  font-size: 20px;
-}
-.form-header-text {
-  display: inline-block;
-  /* text-align: center;
-  justify-content: center; */
-  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
-  /* margin: 10px 0 5px 0; */
-  margin-top: 20px;
-  font-size: 20px;
-}
-.check-box-form {
-  display: flex;
-  align-items: center;
-}
-.check-box {
-  transform: scale(1.5);
-  width: 20px;
-}
-.form-text{
-  font-size: 15px;
-  color: #555;
-  font-weight: bold;
-}
-.form-day {
-  font-size: 16px;
-  color: #555;
-  font-weight: bold;
-  /* background: linear-gradient(transparent 70%, rgb(253, 217, 163) 70%); */
-}
-.comment {
-  font-size: 18px;
-  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
-}
-.comment-area {
-  width: 400px;
-  height: 100px;
-  border: #999 solid 1px;
-  border-radius: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
-}
-.submit-btn{
-  /* display: block; */
-  margin-top: 5px;
-  margin-bottom: 15px;
-  padding: 5px;
-  width: 200px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-  border-radius: 6px;
-  -webkit-transition: all 0.1s ease-in-out;
-  -moz-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-  font-size: 1.4em;
-  font-weight: bold;
-  background: #fca553;
-  color: #f1f0f0;
-  box-shadow: 0 3px 0 #d45c58;
-  cursor: pointer;
-}
-.select-form{
-  width: 60px;
-  border: #999 solid 1px;
-  border-radius: 10px;
-  text-align: center;
 }

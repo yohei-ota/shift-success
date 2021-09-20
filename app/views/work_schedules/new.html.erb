@@ -15,7 +15,6 @@
 </header>
 
 <div class="background">
-  <%# <div class="make-user-main"> %>
     <div class="make-user-sub">
       <div class="shift-calender">
         <div class="page-head">
@@ -110,10 +109,8 @@
 
       <%= form_with model:@schedules, url: work_schedules_path, class: 'make-shift', local: true do |f| %>
         <div class='new-form-wrap'>
-          <div class='form-header'>
-            <h1 class='form-header-text'>
-              シフト希望申請
-            </h1>
+          <div class='form-header-text'>
+            <h1>シフト希望申請</h1>
           </div>
           <%= f.fields_for :collections do |i| %>
             <% wday = @today.wday %>
@@ -139,8 +136,8 @@
               <div class="form-group">
                 <div class="check-box-form">
                   <%= i.check_box :holiday, :as => :boolean, class:"check-box" %>
-                  <div class='form-text-wrap'>
-                    <label class="form-text">休み</label>
+                  <div class="form-text">
+                    <label>休み</label>
                   </div>
                 </div>
               </div>
@@ -148,8 +145,8 @@
             </div>
           <% end %>
             <div class="form-group">
-              <div class='form-comment'>
-                <label class="comment">コメント</label>
+              <div class="comment">
+                <label>コメント</label>
               </div>
               <%= f.text_area :add_request, placeholder:"コメントする", maxlength:"40", class:"comment-area" %>
             </div>
@@ -159,12 +156,6 @@
           </div>
         </div>
       <% end %>
-
-
-
-
-
-    <%# </div> %>
  </div>
 </div>
 

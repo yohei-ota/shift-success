@@ -11,16 +11,16 @@
         <h1 class="admin-group-name"><%= "#{current_admin.group.group_name}"%></h1>
       </div>
         <div class="table-scroll">
-          <table class="today-shift-table", id="table"> 
-            <tr>
+          <table class="shift-table", id="table"> 
+            <tr class="tr-wrap">
               <th class="table-head">名前</th>
               <% 25.times do |time| %>
                   <th colspan="2"><%= "#{time}" %></th>
               <% end %>
             </tr>
             <% @users.each_with_index do |users, f| %>
-            <tbody class="row-group", id=<%= "group#{f}" %>>
-              <tr class="time-list">
+            <tbody id=<%= "group#{f}" %>>
+              <tr>
                 <td class="table-head", id=<%= "user#{f}" %>><%= users.name %></td>
                 <% 50.times do |i|%>
                   <td class="border-th", id=<%= "#{i}" %>><%=""%></td>
@@ -38,16 +38,12 @@
         <div class="submit">
           <%= form_with model:@works, class:"hidden-form", id: "shift-form", local: true do |f| %>
             <%= render 'layouts/error_messages', model: f.object %>
-            <div class="form-groups">
-              <%= f.text_field :user_id, class:"hidden", id:"user-id" %>
-              <%= f.date_field :date, class:"hidden", id:"work-date"%>
-              <%= f.text_field :datetime_in_actual, class:"hidden", id:"in-time" %>
-              <%= f.text_field :datetime_out_actual, class:"hidden", id:"out-time" %>
-              <%= f.check_box :holiday_actual, class:"hidden", id:"holiday", :as => :boolean %>
-            </div>
-            <div>
-              <%= f.submit "保存" ,class:"submit-btn", id:"btn" %>
-            </div>
+            <%= f.text_field :user_id, class:"hidden", id:"user-id" %>
+            <%= f.date_field :date, class:"hidden", id:"work-date"%>
+            <%= f.text_field :datetime_in_actual, class:"hidden", id:"in-time" %>
+            <%= f.text_field :datetime_out_actual, class:"hidden", id:"out-time" %>
+            <%= f.check_box :holiday_actual, class:"hidden", id:"holiday", :as => :boolean %>
+            <%= f.submit "保存" ,class:"submit-btn", id:"btn" %>
           <% end %>
         </div>
     </div>
