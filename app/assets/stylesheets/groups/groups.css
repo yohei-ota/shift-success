@@ -1,26 +1,14 @@
+/* 共通の装飾 */
+.select-user,
+.sign-up-main,
 .user-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f8f8f8
-}
-.select-user {
-  text-align: center;
-  padding: 15px;
-  border: #333 solid 1px;
   background-color: #f8f8f8;
-  margin: 20px;
-  width: 400px;
 }
+.select-user,
 .sign-up-main {
-  height: 580px;
-  width: 450px;
-  background-color: #f8f8f8;
   border: #333 solid 1px;
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
 }
+/* 以下A~Z順 */
 .gray-s {
   color: #999;
   text-shadow    : 
@@ -38,4 +26,22 @@
   color: #888;
   font-weight: 800;
   margin: 10px 0 10px 0;
+}
+.select-user {
+  text-align: center;
+  padding: 15px;
+  margin: 20px;
+  width: 400px;
+}
+.sign-up-main {
+  height: 580px;
+  width: 450px;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+}
+.user-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
