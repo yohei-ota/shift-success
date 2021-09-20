@@ -1,7 +1,6 @@
 <div class="background">
   <div class="make-group">
     <%= form_with model: @user, url: user_registration_path, class: 'sign-up-main', local: true do |f| %>
-    <div class='form-wrap'>
       <div class='form-main'>
         <h1 class='form-sign-up-text'>
           メンバー新規登録
@@ -42,7 +41,6 @@
       <div class='form-group'>
         <%= f.submit "会員登録" ,class:"btn" %>
       </div>
-    </div>
     <% end %>
   </div>
 </div>

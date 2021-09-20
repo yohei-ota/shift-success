@@ -4,6 +4,7 @@ class WorkSchedulesController < ApplicationController
     @today = Date.today
     @group = Group.find(params[:id])
     @schedules = WorkScheduleCollection.new
+    @works = ActualWork.where(group_id: current_user.group_id).where(user_id: current_user.id).where("date >= ?", Date.today.month).order("date ASC")
   end
 
   def create
@@ -11,8 +12,8 @@ class WorkSchedulesController < ApplicationController
     @group = Group.find(params[:id])
     @schedules = WorkScheduleCollection.new(schedule_collections_params)
     WorkScheduleCollection::COLLECTION_NUM.times do |i| #非表示にして月初になっている日付を「本日」から7日間分に変更
-      @schedules.collections[i].datetime_in += (@today.day + i - 1) * 60 * 60 * 24
-      @schedules.collections[i].datetime_out += (@today.day + i - 1) * 60 * 60 * 24
+      @schedules.collections[i].datetime_in += (@today.day + 14 + i - 1) * 60 * 60 * 24
+      @schedules.collections[i].datetime_out += (@today.day + 14 + i - 1) * 60 * 60 * 24
     end
     if @schedules.save
       redirect_to user_posts_path

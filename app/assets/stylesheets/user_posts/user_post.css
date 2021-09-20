@@ -1,22 +1,10 @@
-.smart-menu {
-  /* display: flex; */
-  align-items: center;
-  /* justify-content: space-between; */
-  background-color: #ffb36b;
-  /* background: linear-gradient(transparent 0%, #ffb36b 70%); */
-  border-bottom: #999 solid 3px;
-  position    : fixed;
-  top         : 0;
-  left        : 0;
-  right       : 0;
-  height      : 105px;
-  z-index     : 10;
-}
+
 .smart-app-title {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-top: 20px;
+  padding-bottom: 10px;
 }
 .smart-app-title-text{
   font-size: 25px;
@@ -30,7 +18,7 @@
 .user-header {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  margin-left: 100px;
   height: 30px;
 }
 .smart-sub-menu {
@@ -40,50 +28,110 @@
   margin-bottom: 15px;
 }
 .current-month-title {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  margin-left: 100px;
 }
 .sub-title {
   display: inline-block;
   /* text-align: center;
   justify-content: center; */
-  background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%);
+  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
   margin: 40px 0 5px 0;
   font-size: 25px;
 }
+.page-head {
+  margin-top: 20px;
+  display: flex;
+}
+.current-group {
+  font-size: 30px;
+  margin-left: 10px;
+  /* padding-top: 10px; */
+}
+.current-user-name {
+  display: flex;
+  align-items: flex-end;
+  font-size: 20px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+
 .prev-next-month {
   font-size: 20px;
-  color: #888;
+  color: rgb(204, 204, 204);
+  vertical-align: top;
+  padding-left: 5px;
+  padding-top: 5px;
 }
 .prev-next-month-sun {
   font-size: 20px;
   color: pink;
+  vertical-align: top;
+  padding-left: 5px;
+  padding-top: 5px;
 }
 .prev-next-month-sat {
   font-size: 20px;
   color: rgb(152, 206, 250);
+  vertical-align: top;
+  padding-left: 5px;
+  padding-top: 5px;
 }
-.current-month {
+.current-month-num {
   font-size: 20px;
-  font-weight: bold;
+  vertical-align: top;
+  padding-left: 5px;
+  padding-top: 5px;
+  /* font-weight: bold; */
 }
-.current-month-sun {
-  font-size: 20px;
+.current-month-sun{
   color: rgb(247, 55, 55);
 }
 .current-month-sat {
-  font-size: 20px;
   color: rgb(66, 66, 252);
 }
-.make-user-main {
-  height: 100%;
-  width: 100%;
-  margin: 20px;
-  border-radius: 20px;
-  background-color: rgba(240, 240, 240, 0.8);
+.current-month-num {
+  color: #777;
+}
+.current-month-sun-num {
+  font-size: 20px;
+  color: rgb(247, 55, 55);
+  vertical-align: top;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+.current-month-sat-num {
+  font-size: 20px;
+  color: rgb(66, 66, 252);
+  vertical-align: top;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.make-user-sub {
+  height: 90%;
+  width: 90%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: scroll;
+}
+.user-calender {
+  width: 90%;
+  /* height: 70%; */
+}
+.make-user-main {
+  height: 90%;
+  width: 90%;
+  /* margin: 20px; */
+  /* padding-bottom: 60px; */
+  /* background-color: rgba(240, 240, 240, 0.8); */
+  display: flex;
+  align-items: center;
   justify-content: center;
-  overflow-x : auto;
+  overflow: scroll;
 }
 .shift-form{
   display: flex;
@@ -92,19 +140,54 @@
   padding-top: 12px;
   padding-bottom: 13px;
 }
+.today-shift-table {
+  background-color: white;
+  table-layout: fixed;
+  width: 100%;
+  border: solid 2px #333;
+}
 .shift-table {
   background-color: white;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  table-layout: fixed;
-  border: double 10px #333;
-  margin-bottom: 20px;
+  table-layout: fixed; */
+  border: #333 solid 2px;
+  /* margin-bottom: 20px; */
+  width: 100%;
+  /* height: 100px; */
+}
+.shift-new-calender {
+  font-size: 15px;
+  background-color: rgb(255, 237, 204);
+  color: #888;
+  font-weight: lighter;
+  margin-top: 10px;
+  padding:0 8px;
+}
+.shift-in-calender {
+  font-size: 20px;
+  background-color: rgb(255, 237, 204);
+  color: #888;
+  font-weight: lighter;
+  margin-top: 10px;
+  padding:0 8px;
+  
 }
 .monthly-shift {
   font-size: 22px;
   color: #333;
   font-weight: bold;
-  background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%);
+  text-align: center;
+  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
+}
+.monthly-shift-wrap {
+  background-color: #f8f8f8;
+  border: #333 solid 1px;
+  margin: 50px 0;
+  width: 30%;
+  /* height: 80%; */
+  padding: 20px;
+  padding-left: 40px;
 }
 .finished-shift-day {
   font-size: 20px;
@@ -112,7 +195,9 @@
   margin: 5px;
 }
 .today-shift-day {
-  font-size: 23px;
+  /* display: inline-block; */
+  /* background: linear-gradient(transparent 90%, rgb(185, 185, 185) 70%); */
+  font-size: 20px;
   color: #333;
   margin: 5px;
 }
@@ -121,23 +206,15 @@
   color: #333;
   margin: 5px;
 }
-.border-th {
-  caret-color: transparent;
+.shift-calender {
+  width: 50%;
+  /* height: 50%; */
 }
-
 .hidden-form{
   width: 200px;
   height: 0;
 }
-.bottom-menu {
-  display: flex;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background: rgb(190, 190, 190);
-  height: 80px;
-  width: 100%;
-}
+
 .bottom-list {
   display: flex;
   align-items: center;
@@ -157,8 +234,9 @@
   display: inline-block;
   /* text-align: center;
   justify-content: center; */
-  background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%);
-  margin: 10px 0 5px 0;
+  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
+  /* margin: 10px 0 5px 0; */
+  margin-top: 20px;
   font-size: 20px;
 }
 .check-box-form {
@@ -178,14 +256,14 @@
   font-size: 16px;
   color: #555;
   font-weight: bold;
-  background: linear-gradient(transparent 70%, rgb(253, 217, 163) 70%);
+  /* background: linear-gradient(transparent 70%, rgb(253, 217, 163) 70%); */
 }
 .comment {
   font-size: 18px;
-  background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%);
+  /* background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%); */
 }
 .comment-area {
-  width: 450px;
+  width: 400px;
   height: 100px;
   border: #999 solid 1px;
   border-radius: 10px;

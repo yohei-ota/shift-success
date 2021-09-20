@@ -1,7 +1,6 @@
 <div class="background">
   <div class="make-group">
     <%= form_with model: @user, url: user_session_path, class: 'user-sign-in-main', local: true do |f| %>
-    <div class='form-wrap'>
       <div class='form-main'>
         <h1 class='form-main-text'>
           メンバーログイン
@@ -31,7 +30,6 @@
       <div class='form-group'>
         <%= f.submit "ログイン" ,class:"btn" %>
       </div>
-    </div>
     <% end %>
   </div>
 </div>

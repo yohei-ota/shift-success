@@ -17,7 +17,9 @@
   width: 40px;
   height: 40px;
 }
-
+.tr-wrap{
+  border-bottom: solid 2px #666;
+}
 .box-head {
   width: 100%;
   display: inline-flex;
@@ -27,15 +29,15 @@
 
 .admin-group-name {
   font-size: 30px;
-  margin: 30px 100px 0 200px;
-  background: linear-gradient(transparent 80%, rgb(167, 167, 167) 70%);
+  margin: 30px 100px 0 0;
+  /* background: linear-gradient(transparent 80%, rgb(167, 167, 167) 70%); */
 }
 .make-admin-main{
   height: 100%;
   width: 100%;
-  margin: 20px;
-  border-radius: 20px;
-  background-color: rgba(240, 240, 240, 0.8);
+  /* margin: 20px; */
+  /* border-radius: 20px; */
+  /* background-color: rgba(240, 240, 240, 0.8); */
   display: flex;
   justify-content: center;
 }
@@ -54,32 +56,24 @@
   width: 90%;
 }
 .admin-sub-title {
-  display: inline-flex;
-  font-size: 30px;
+  /* display: inline-flex; */
+  font-size: 25px;
   margin-top: 30px;
   margin-left: 40px;
-  background: linear-gradient(transparent 70%, rgb(252, 183, 79) 70%);
 }
 
 .table-scroll {
   overflow-x: auto;
-  margin: 30px;  
-}
-
-.today-shift-table {
-  background-color: white;
-  table-layout: fixed;
-  width: 100%;
-  border: double 10px #333;
+  margin: 20px 30px 30px;  
 }
 
 .today-shift-list {
   background-color: white;
-  background-image:
+  /* background-image:
     radial-gradient(#999 3%, transparent 2%),
     radial-gradient(#999 3%, transparent 2%);
   background-size: 80px 80px;
-  background-position: 0 0, 40px 40px;
+  background-position: 0 0, 40px 40px; */
   border: #888 solid 2px;
   border-radius: 10px;
   margin: 0 30px;
@@ -88,9 +82,6 @@
 .form-groups{
   height: 0;
   width: 0;
-}
-.today-shift-day {
-  padding-top: 5px;
 }
 .shift-one {
   display: inline-flex;
@@ -107,24 +98,54 @@
 .table-head {
   width: 100px;
   border-right: solid 3px #999;
+  text-align: center;
+  padding: 5px 10px;
+  border-bottom: solid 1px rgb(200, 200, 200);
 }
-
-table th {
+.border-th {
+  border-bottom: solid 1px rgb(200, 200, 200);
+  border-left: solid 1px rgb(200, 200, 200) ;
+}
+th {
+  border-bottom: solid 1px rgb(200, 200, 200);
+  width: 48px;
+}
+/* table th {
   padding: 5px 10px;
   width: 48px;
   text-align: center;
-  border-bottom: double 2px #333;
+  border-bottom: #333 solid 1px;
+} */
+.current-month-sun,
+.current-month-sat,
+.current-month {
+  font-size: 18px;
+  text-align: center;
+  border-bottom: #333 solid 1px;
+  border-left: rgb(200, 200, 200) solid 1px;
+  padding: 2px 0;
 }
-
-table td {
+/* table td {
   padding: 5px 10px;
   width: 32px;
   text-align: center;
-  border-bottom: solid 2px rgb(200, 200, 200);
-}
-
-.border-th {
+  border-bottom: solid 1px rgb(200, 200, 200);
+} */
+.prev-next-month-sun,
+.prev-next-month-sat,
+.prev-next-month,
+.current-month-sun-num,
+.current-month-sat-num,
+.current-month-num {
+  border-bottom: solid 1px rgb(200, 200, 200);
   border-left: solid 1px rgb(200, 200, 200);
+  width: 130px;
+  height: 130px;
+}
+.border-td {
+  border-left: solid 1px rgb(200, 200, 200);
+  /* caret-color: transparent; */
+  border-bottom: solid 1px rgb(200, 200, 200);
 }
 
 .schedules-list {
@@ -137,8 +158,12 @@ table td {
 }
 
 .calender{
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
   height: 50px;
   border: #888 solid 1px;
+  border-radius: 10px;
 }
 .calender-field {
   display: flex;
@@ -149,4 +174,45 @@ table td {
 .calender-comment{
   font-size: 18px;
   color: #333;
+}
+
+.over-mode{
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+.mode-btn {
+  font-size: 20px;
+  font-weight: 580;
+  color: #333;
+  border-radius: 20px;
+  /* border: rgb(153, 153, 153) solid 2px; */
+  box-shadow: 2px 2px 2px 1px rgb(83, 83, 83);
+  width: 150px;
+  height: 50px;
+}
+
+.edit-list {
+  width: 200px;
+  margin: 0 10px 0 10px;
+}
+
+.edit-one{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-class {
+  width: 50%;
+  margin: 10px;
+  background-color: transparent;
+  text-align: center;
+  font-size: 20px;
+}
+
+.edit-btn {
+  display: flex;
+  justify-content: center;
 }

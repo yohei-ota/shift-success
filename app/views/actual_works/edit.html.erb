@@ -2,11 +2,19 @@
 <div class="background">
   <div class="make-admin-main">
     <div class="back-box">
-      <h1 class="admin-title"><%="シフト編集トップ#{current_admin.name}" %></h1>
-      <input type="date", id="calender">
-      <button type="button", id="over-early-mode", style="background-color:#9acd32;">残業モード</button>
+      <div class="box-head">
+        <h1 class="admin-sub-title"><%="シフト編集トップ#{current_admin.name}" %></h1>
+        <div class="calender-field">
+          <input type="date", class="calender" id="calender">
+          <span class="calender-comment", id="calender-comment">⬅ 日付を選択してください</span>
+        </div>
+        <h1 class="admin-group-name"><%= "#{current_admin.group.group_name}"%></h1>
+      </div>
+      <div class="over-mode">
+        <button type="button", class="mode-btn" id="over-early-mode", style="background-color:#9dda23;">残業モード</button>
+      </div>
         <div class="table-scroll">
-          <table class="today-shift", id="table"> 
+          <table class="today-shift-table", id="table"> 
             <tr>
               <th class="table-head">名前</th>
               <% 25.times do |time| %>
@@ -16,7 +24,7 @@
             <% @users.each_with_index do |users, f| %>
             <tbody class="row-group", id=<%= "group#{f}" %>>
               <tr class="time-list">
-                <td class="table-user", id=<%= "user#{f}" %>><%= users.name %></td>
+                <td class="table-head", id=<%= "user#{f}" %>><%= users.name %></td>
                 <% 50.times do |i|%>
                   <td class="border-th", id=<%= "#{i}" %>><%=""%></td>
                 <% end %>
@@ -27,39 +35,40 @@
         </div>
 
 
-
+      <div class="edit-form">
         <% @works.each_with_index do |work, w| %>
           <% @users.each_with_index do |user, u| %>
             <% if work.user_id == user.id%>
-              <%= form_with model: @works, url: actual_work_path, id: "shift-form#{w}", local: true do |f| %>
-                <div class='form-wrap'>
-                  <div class="form-group <%= "edit#{w}" %>">
-                    <%= f.text_field :user_id, value: user.name, id:"user-id#{w}" %>
-                  </div>
-                  <div class="form-group <%= "edit#{w}" %>">
-                    <%= f.hidden_field :date, value: work.date, id:"date#{w}" %>
-                  </div>
-                  <div class="form-group <%= "edit#{w}" %>">
-                    <%= f.text_field :datetime_in_actual, value: work.datetime_in_actual, id:"in-time#{w}" %>
-                  </div>
-                  <div class="form-group <%= "edit#{w}" %>">
-                    <%= f.text_field :datetime_out_actual, value: work.datetime_out_actual, id:"out-time#{w}" %>
-                  </div>
-                  <div class="form-group <%= "edit#{w}" %>">
-                    <%= f.text_field :over_early_time, value: work.over_early_time, id:"over-early-time#{w}" %>
-                  </div>
-                  <div class="form-group <%= "edit#{w}" %>">
-                    <span id=<%= "holiday-check#{w}" %>>休みにする</span>
-                    <%= f.check_box :holiday_actual, :as => :boolean, id:"holiday#{w}" %>
-                  </div>
+              <%= form_with model: @works, url: actual_work_path, class:"edit-list", id: "shift-form#{w}", local: true do |f| %>
+                <div class="edit-one">
+                  <%= f.text_field :user_id, value: user.name, readonly:"readonly", class:"form-class", id:"user-id#{w}" %>
+                </div>
+                <div class="edit-one">
+                  <%= f.hidden_field :date, value: work.date, class:"form-class", id:"date#{w}" %>
+                </div>
+                <div class="edit-one">
+                  <%= f.label :datetime_in_actual, "入時間", id:"in-label#{w}" %>
+                  <%= f.text_field :datetime_in_actual, value: work.datetime_in_actual, class:"form-class", id:"in-time#{w}" %>
+                </div>
+                <div class="edit-one">
+                  <%= f.label :datetime_out_actual, "終時間", id:"out-label#{w}" %>
+                  <%= f.text_field :datetime_out_actual, value: work.datetime_out_actual, class:"form-class", id:"out-time#{w}" %>
+                </div>
+                <div class="edit-one">
+                  <%= f.label :over_early_time, "残業時間", id:"over-early-label#{w}" %>
+                  <%= f.text_field :over_early_time, value: work.over_early_time, class:"form-class", id:"over-early-time#{w}" %>
+                </div>
+                <div class="edit-one">
+                  <%= f.check_box :holiday_actual, :as => :boolean, class:"check-box", id:"holiday#{w}" %>
+                  <span id=<%= "holiday-check#{w}" %>>休みにする</span>
                 </div>
               <% end %>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-      <div class='login-btn'>
-      <button type="button", id="btn">変更保存</button>
-        <%# <%= f.submit "保存" ,class:"login-red-btn", id:"btn" %> %>
+      </div>
+      <div class="edit-btn">
+        <button type="button", class="submit-btn" id="btn">変更保存</button>
       </div>
     </div>
   </div>

@@ -10,7 +10,7 @@
       <div class="table-scroll">
         <table class="today-shift-table"> 
           <tbody>
-            <tr>
+            <tr class="tr-wrap">
               <th class="table-head">名前</th>
               <% 25.times do |time| %>
                   <th colspan="2"><%= "#{time}" %></th>
@@ -18,9 +18,9 @@
             </tr>
             <% @users.each do |users| %>
               <tr>
-                <td class="table-head"><%= users.name %></td>
+                <td class="table-head border-td"><%= users.name %></td>
                 <% 50.times do %>
-                  <td class="border-th"><%=""%></td>
+                  <td class="border-td"><%=""%></td>
                 <% end %>
               </tr>
             <% end %>
