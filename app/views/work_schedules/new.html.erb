@@ -12,6 +12,9 @@
           <div class="current-month-title">
             <div class="sub-title"><%= @today.strftime('%Y年%m月') %></div>
           </div>
+          <div class="color-explain">
+            <span class="orange-explain">■</span>確定シフト<span class="pink-explain">■</span>シフト希望
+          </div>
         </div>
         <table class="shift-table">
           <tr>
@@ -65,7 +68,7 @@
       </div>
       <%# 来月カレンダー %>
       <div class="shift-calender">
-        <div class="current-month-title">
+        <div class="next-month-title">
           <div class="sub-title"><%= @today.next_month.beginning_of_month.strftime('%Y年%m月') %></div>
         </div>
         <table class="shift-table">
@@ -124,7 +127,7 @@
     <%= form_with model:@schedules, url: work_schedules_path, class: 'make-shift', local: true do |f| %>
       <div class='new-form-wrap'>
         <div class='form-header-text'>
-          <h1>シフト希望申請</h1>
+          <h1>シフト希望申請フォーム</h1>
         </div>
         <%# シフト提出は2週間後の月曜から7日間分 %>
         <% ns = @today.days_since(14) %>

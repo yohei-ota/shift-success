@@ -158,12 +158,13 @@
 .current-month-num-schedule {
   color: #777;
 }
-.current-month-title {
-  margin-left: 100px;
+.color-explain {
+  color: #333;
+  background-color: white;
+  height: 40px;
+  border: #999 solid 1px;
 }
 .current-user-name {
-  display: flex;
-  align-items: flex-end;
   font-size: 20px;
   margin-left: 15px;
   margin-bottom: 5px;
@@ -203,9 +204,23 @@
   border: #333 solid 1px;
   padding-bottom: 20px;
 }
+.next-month-title {
+  display: flex;
+  justify-content: center;
+}
+.orange-explain {
+  font-size: 25px;
+  color: rgb(255, 237, 204);
+}
 .page-head {
   margin-top: 20px;
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.pink-explain {
+  font-size: 25px;
+  color: rgb(255, 220, 226);
 }
 .select-form{
   width: 60px;
