@@ -11,7 +11,7 @@ class WorkSchedulesController < ApplicationController
     @today = Date.today
     @group = Group.find(params[:id])
     @schedules = WorkScheduleCollection.new(schedule_collections_params)
-    WorkScheduleCollection::COLLECTION_NUM.times do |i| #非表示にして月初になっている日付を「本日」から7日間分に変更
+    WorkScheduleCollection::COLLECTION_NUM.times do |i| #非表示にして月初になっている日付を「再来週」から7日間分に変更
       @schedules.collections[i].datetime_in += (@today.day + 14 + i - 1) * 60 * 60 * 24
       @schedules.collections[i].datetime_out += (@today.day + 14 + i - 1) * 60 * 60 * 24
     end

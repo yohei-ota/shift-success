@@ -7,6 +7,7 @@
         <h1 class="admin-sub-title"><%= "#{@today.strftime("%m/%d(#{wd[@today.wday]})")}のシフト" %></h1>
         <h1 class="admin-group-name"><%= "#{current_admin.group.group_name}"%></h1>
       </div>
+      <%# 本日のシフト表部分 %>
       <div class="table-scroll">
         <table class="shift-table"> 
           <tbody>
@@ -27,7 +28,7 @@
           </tbody>
         </table>
       </div>
-
+      <%# 本日のシフト一覧 %>
       <div class="today-shift-list">
         <% @works.each_with_index do |work, w| %>
           <% @users.each do |user| %>

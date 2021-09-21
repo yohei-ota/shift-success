@@ -11,15 +11,16 @@
         </div>
         <h1 class="admin-group-name"><%= "#{current_admin.group.group_name}"%></h1>
       </div>
-        <div class="table-scroll">
-          <table class="shift-table", id="table"> 
-            <tr class="tr-wrap">
-              <th class="table-head">名前</th>
-              <% 25.times do |time| %>
-                  <th colspan="2"><%= "#{time}" %></th>
-              <% end %>
-            </tr>
-            <% @users.each_with_index do |users, f| %>
+      <%# シフト作成の表部分 %>
+      <div class="table-scroll">
+        <table class="shift-table", id="table"> 
+          <tr class="tr-wrap">
+            <th class="table-head">名前</th>
+            <% 25.times do |time| %>
+              <th colspan="2"><%= "#{time}" %></th>
+            <% end %>
+          </tr>
+          <% @users.each_with_index do |users, f| %>
             <tbody id=<%= "group#{f}" %>>
               <tr>
                 <td class="table-head", id=<%= "user#{f}" %>><%= users.name %></td>
@@ -28,14 +29,14 @@
                 <% end %>
               </tr>
             </tbody>
-            <% end %>
-          </table>
-        </div>
+          <% end %>
+        </table>
+      </div>
 
+        <%# シフト希望表示部分 %>
         <div class="today-shift-list", id="shift"></div>
 
-
-
+        <%# 非表示のシフト作成フォーム %>
         <div class="submit">
           <%= form_with model:@works, class:"hidden-form", id: "shift-form", local: true do |f| %>
             <%= render 'layouts/error_messages', model: f.object %>
