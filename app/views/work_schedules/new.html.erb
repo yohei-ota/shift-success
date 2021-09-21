@@ -126,6 +126,7 @@
         <div class='form-header-text'>
           <h1>シフト希望申請</h1>
         </div>
+        <%# シフト提出は2週間後の月曜から7日間分 %>
         <% ns = @today.days_since(14) %>
         <% ns_date = ns.beginning_of_week.day %>
         <% wday = ns.beginning_of_week.wday %>
@@ -137,11 +138,11 @@
               <%= "#{ns.beginning_of_month.month}/#{ns_date}#{wdays[wday]}" %>
             </div>
             <div class="form-group">
-              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
+              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, prompt: "", end_hour: 24, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
             </div>
             <div>~</div>
             <div class="form-group">
-              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
+              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, prompt: "", end_hour: 24, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
             </div>
             <div class="form-group">
               <div class="check-box-form">
