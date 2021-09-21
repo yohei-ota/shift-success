@@ -1,5 +1,8 @@
 function shift() {
   if (location.pathname.match(`groups/${gon.users[1].group_id}/actual_works/new`)){
+    const shiftForm = document.getElementById("shift-form") // フォーム
+    const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
+    const btn = document.getElementById("btn") // 保存ボタン
     let date = document.getElementById("calender") //カレンダーから日付選択
     let tableRow = document.getElementById("table").rows // 一行
     let timeId = [...document.querySelectorAll(".border-th")] // 表部分
@@ -9,9 +12,6 @@ function shift() {
     let outTime = document.getElementById("out-time") // 入力フォームの終時間
     let holiday = document.getElementById("holiday") // 入力フォームの休み有無
     let shift = document.getElementById("shift") // その日のシフト希望一覧を表示するdiv要素
-    const shiftForm = document.getElementById("shift-form") // フォーム
-    const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
-    const btn = document.getElementById("btn") // 保存ボタン
     let colorCell = [] // 色付きのセル
     
     shift.setAttribute("style", "display:none")

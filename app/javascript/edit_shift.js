@@ -1,11 +1,11 @@
 function shift() {
   if (location.pathname.match(`groups/${gon.admin.group_id}/actual_works/${gon.admin.group_id}/edit`)){ // シフト編集ページでのみ実行
-    let date = document.getElementById("calender") //カレンダーから日付選択
-    let tableRow = document.getElementById("table").rows // 一行
-    let timeId = [...document.querySelectorAll(".border-th")] // 表部分
     const btn = document.getElementById("btn") // 保存ボタン
     const mode = document.getElementById("over-early-mode") // モード変更ボタン
     const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
+    let date = document.getElementById("calender") //カレンダーから日付選択
+    let tableRow = document.getElementById("table").rows // 一行
+    let timeId = [...document.querySelectorAll(".border-th")] // 表部分
     let greenCell = [] // 黄緑色付きのセル
     let pinkCell = [] // ピンク色付きのセル
     
