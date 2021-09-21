@@ -1,5 +1,5 @@
 function shift() {
-  if (location.pathname.match(`groups/${gon.users[1].group_id}/actual_works/new`)){
+  if (location.pathname.match(`groups/${gon.admin.group_id}/actual_works/new`)){
     const shiftForm = document.getElementById("shift-form") // フォーム
     const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
     const btn = document.getElementById("btn") // 保存ボタン
