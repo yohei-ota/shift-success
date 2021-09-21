@@ -3,6 +3,7 @@ class WorkSchedulesController < ApplicationController
   def new
     @today = Date.today
     @group = Group.find(params[:id])
+    @plans = WorkSchedule.where(group_id: current_user.group_id).where("datetime_in >= ?", Date.today).order("datetime_in ASC")
     @schedules = WorkScheduleCollection.new
     @works = ActualWork.where(group_id: current_user.group_id).where(user_id: current_user.id).where("date >= ?", Date.today.month).order("date ASC")
   end

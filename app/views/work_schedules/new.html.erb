@@ -43,15 +43,15 @@
               <%# 今月に確定シフトを表示 %>
               <% if @start_month.wday == 0 %>
                 <td class="current-month-sun-num">
-                  <%= render "layouts/user_work_schedules_calender", locals: { works: @works, start_month: @start_month } %>
+                  <%= render "layouts/user_work_schedules_calender", locals: { works: @works, start_month: @start_month, plans: @plans } %>
                 </td>
               <% elsif @start_month.wday == 6%>
                 <td class="current-month-sat-num">
-                  <%= render "layouts/user_work_schedules_calender", locals: { works: @works, start_month: @start_month } %>
+                  <%= render "layouts/user_work_schedules_calender", locals: { works: @works, start_month: @start_month, plans: @plans } %>
                 </td>
               <% else %>
                 <td class="current-month-num">
-                  <%= render "layouts/user_work_schedules_calender", locals: { works: @works, start_month: @start_month } %>
+                  <%= render "layouts/user_work_schedules_calender", locals: { works: @works, start_month: @start_month, plans: @plans } %>
                 </td>
               <% end %>
             <% end %>
@@ -98,15 +98,15 @@
               <%# 今月に確定シフトを表示 %>
               <% if @start_next_month.wday == 0 %>
                 <td class="current-month-sun-num">
-                  <%= render "layouts/user_work_schedules_next_calender", locals: { works: @works, start_next_month: @start_next_month } %>
+                  <%= render "layouts/user_work_schedules_next_calender", locals: { works: @works, start_next_month: @start_next_month, plans: @plans } %>
                 </td>
               <% elsif @start_next_month.wday == 6%>
                 <td class="current-month-sat-num">
-                  <%= render "layouts/user_work_schedules_next_calender", locals: { works: @works, start_next_month: @start_next_month } %>
+                  <%= render "layouts/user_work_schedules_next_calender", locals: { works: @works, start_next_month: @start_next_month, plans: @plans } %>
                 </td>
               <% else %>
                 <td class="current-month-num">
-                  <%= render "layouts/user_work_schedules_next_calender", locals: { works: @works, start_next_month: @start_next_month } %>
+                  <%= render "layouts/user_work_schedules_next_calender", locals: { works: @works, start_next_month: @start_next_month, plans: @plans } %>
                 </td>
               <% end %>
             <% end %>

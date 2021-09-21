@@ -43,13 +43,22 @@
   align-items: center;
   overflow: scroll;
 }
+.plan-in-calender,
+.plan-new-calender {
+  background-color: rgb(255, 220, 226);
+}
+.plan-in-calender,
+.plan-new-calender,
 .shift-in-calender,
 .shift-new-calender {
-  background-color: rgb(255, 237, 204);
   color: #888;
   font-weight: lighter;
   margin-top: 10px;
   padding:0 8px;
+}
+.shift-in-calender,
+.shift-new-calender {
+  background-color: rgb(255, 237, 204);
 }
 /* 以下A~Z順 */
 .bottom-list {
@@ -162,9 +171,11 @@
 .shift-calender {
   width: 50%;
 }
+.plan-in-calender,
 .shift-in-calender {
   font-size: 20px;
 }
+.plan-new-calender,
 .shift-new-calender {
   font-size: 15px;
 }
