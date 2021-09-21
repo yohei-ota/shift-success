@@ -1,6 +1,6 @@
-<%= @start_month.strftime("%d").to_i %>
+<%= @start_next_month.strftime("%d").to_i %>
 <% @works.each do |work| %>
-  <% if (work.date.month == @start_month.strftime("%m").to_i) && (work.date.day == @start_month.strftime("%d").to_i) %>
+  <% if (work.date.month == @start_next_month.strftime("%m").to_i) && (work.date.day == @start_next_month.strftime("%d").to_i) %>
     <% if work.holiday_actual == false %>
       <div class="shift-new-calender">
         <%= work.datetime_in_actual[0,2] %>:<%= work.datetime_in_actual[2,3] %> ~ 
