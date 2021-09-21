@@ -138,11 +138,11 @@
               <%= "#{ns.beginning_of_month.month}/#{ns_date}#{wdays[wday]}" %>
             </div>
             <div class="form-group">
-              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, end_hour: 24, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
+              <%= i.datetime_select :datetime_in, {discard_year: true, discard_month: true, minute_step: 30, prompt: "00", end_hour: 24, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
             </div>
             <div>~</div>
             <div class="form-group">
-              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, use_month_numbers: true, end_hour: 24, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
+              <%= i.datetime_select :datetime_out, {discard_year: true, discard_month: true, minute_step: 30, prompt: "00", end_hour: 24, default: { year: @today.next_week.next_week.beginning_of_month.year, month: @today.next_week.next_week.beginning_of_month.month, day: @today.next_week.next_week.beginning_of_month.day + 0.hour}}, {class: "select-form"} %>
             </div>
             <div class="form-group">
               <div class="check-box-form">
