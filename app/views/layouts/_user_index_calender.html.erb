@@ -1,0 +1,11 @@
+<%= @start_month.strftime("%d").to_i %>
+  <% @works.each do |work| %>
+    <% if work.date.day == @start_month.strftime("%d").to_i %>
+      <% if work.holiday_actual == false %>
+        <div class="shift-in-calender">
+          <%= work.datetime_in_actual[0,2] %>:<%= work.datetime_in_actual[2,3] %> ~ 
+          <%= work.datetime_out_actual[0,2] %>:<%= work.datetime_out_actual[2,3] %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>

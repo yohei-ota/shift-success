@@ -1,20 +1,23 @@
 <header class="header">
-  <div class="box box-logo">
-    <div class="sub-title">シフト管理・作成</div>
-  </div>
-  <div class="sp-nav">
-    <i class="fas fa-bars"></i>
-  </div>
-  <div class="box box-nav">
+  <div class="smart-menu">
+    <div class='admin-title'>
+      <%= image_tag 'shift_success_logo_removebg.png', class:'smart-icon' %>
+      <h1 class='admin-title-text'>
+        Shift Success
+      </h1>
+    </div>
     <ul class="inner-nav">
+      <li class="menu">
+        <%= link_to "ホーム", admin_posts_path(current_admin.group_id), class: "menu-list" %>
+      </li>
       <li class="menu">
         <%= link_to "シフト作成", new_actual_work_path(current_admin.group_id), class: "menu-list" %>
       </li>
       <li class="menu">
-        <%= link_to "従業員管理", "#", class: "menu-list" %>
+        <%= link_to "シフト編集", edit_actual_work_path(current_admin.group_id), class: "menu-list" %>
       </li>
       <li class="menu">
-        <%= link_to "日報", edit_actual_work_path(current_admin.group_id), class: "menu-list" %>
+        <%= link_to "従業員管理", "#", class: "menu-list" %>
       </li>
       <li class="menu">
         <%= link_to "締め処理", "#", class: "menu-list" %>

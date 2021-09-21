@@ -1,5 +1,10 @@
 class GroupsController < ApplicationController
+  
+  def index
+    @group = Group.find(params[:format])
+  end
 
+  
   def new
     @group = Group.new
   end
@@ -20,9 +25,6 @@ class GroupsController < ApplicationController
 
   end
 
-  def index
-    @group = Group.find(params[:format])
-  end
 
   private
   def group_params

@@ -1,13 +1,16 @@
 function shift() {
   if (location.pathname.match(`groups/${gon.admin.group_id}/actual_works/${gon.admin.group_id}/edit`)){ // シフト編集ページでのみ実行
+    const btn = document.getElementById("btn") // 保存ボタン
+    const mode = document.getElementById("over-early-mode") // モード変更ボタン
+    const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
     let date = document.getElementById("calender") //カレンダーから日付選択
     let tableRow = document.getElementById("table").rows // 一行
     let timeId = [...document.querySelectorAll(".border-th")] // 表部分
-    const btn = document.getElementById("btn") // 保存ボタン
-    const mode = document.getElementById("over-early-mode") // モード変更ボタン
     let greenCell = [] // 黄緑色付きのセル
     let pinkCell = [] // ピンク色付きのセル
     
+
+    btn.setAttribute("style", "display:none")
 
     for(let f = 0; f < gon.users.length; f++){ // ページを読み込んだ時はシフトを非表示
       let user = gon.users[f]
@@ -21,11 +24,11 @@ function shift() {
     }
     
     mode.addEventListener("click", () =>{ // モード切り替え
-      if(mode.getAttribute("style") === "background-color:#9acd32;"){ // 黄緑
+      if(mode.getAttribute("style") === "background-color:#9dda23;"){ // 黄緑
         mode.setAttribute("style", "background-color:#f8b1f2;") // ピンク
         mode.textContent = "残業モード解除"
       } else {
-        mode.setAttribute("style", "background-color:#9acd32;")
+        mode.setAttribute("style", "background-color:#9dda23;")
         mode.textContent = "残業モード"
       }
     })
@@ -33,7 +36,7 @@ function shift() {
     
     timeId.forEach(function(target){
       target.addEventListener("mousedown", function(){ // モードによってクリックした時の背景色が変わる
-        if(mode.getAttribute("style") === "background-color:#9acd32;"){
+        if(mode.getAttribute("style") === "background-color:#9dda23;"){
           if(this.getAttribute("style") === "background-color:#004e0a;"){
             this.removeAttribute("style", "background-color:#004e0a;")
           } else {
@@ -82,17 +85,26 @@ function shift() {
               let overTime = document.getElementById(`over-early-time${f}`)
               let holidayActual = document.getElementById(`holiday${f}`)
               let holidayCheck = document.getElementById(`holiday-check${f}`)
+              let inLabel = document.getElementById(`in-label${f}`)
+              let outLabel = document.getElementById(`out-label${f}`)
+              let overLabel = document.getElementById(`over-early-label${f}`)
               if((userId.value === user["name"]) &&(work["date"] === date.value)){
                 if((greenCell.length === 0) && (pinkCell.length === 0) && (overWork === 0)){ // 色付きのセルがない時はシフトを休みにして非表示
                   inActual.setAttribute("type","hidden")
                   outActual.setAttribute("type","hidden")
                   overTime.setAttribute("type","hidden")
+                  inLabel.setAttribute("type","hidden")
+                  outLabel.setAttribute("type","hidden")
+                  overLabel.setAttribute("type","hidden")
                   holidayCheck.textContent = "休みを取り消す"
                   holidayActual.checked = true
                 } else { // 色付きのセルがあるとシフトのフォームが表示
                   inActual.removeAttribute("type","hidden")
                   outActual.removeAttribute("type","hidden")
                   overTime.removeAttribute("type","hidden")
+                  inLabel.removeAttribute("type","hidden")
+                  outLabel.removeAttribute("type","hidden")
+                  overLabel.removeAttribute("type","hidden")
                   inActual.value = startTime
                   outActual.value = endTime
                   overTime.value = overWork
@@ -112,10 +124,13 @@ function shift() {
  
     
     date.addEventListener("input", ()=>{ // カレンダーで日付選択をした時に対応するシフトを表示
+      btn.removeAttribute("style", "display:none")
+      calender.setAttribute("style", "display:none")
       timeId.forEach(function(target){ // 背景色をリセット
         target.removeAttribute("style", "background-color:#004e0a")
       })
       for(let f = 0; f < gon.users.length; f++){
+        let user = gon.users[f]
         for(let i = 0; i < gon.works.length; i++){
           let work = gon.works[i]
           let userId = document.getElementById(`user-id${i}`)
@@ -125,7 +140,13 @@ function shift() {
           let overTime = document.getElementById(`over-early-time${i}`)
           let holidayActual = document.getElementById(`holiday${i}`)
           let holidayCheck = document.getElementById(`holiday-check${i}`)
+          let inLabel = document.getElementById(`in-label${i}`)
+          let outLabel = document.getElementById(`out-label${i}`)
+          let overLabel = document.getElementById(`over-early-label${i}`)
           if(work.user_id === user.id){
+            inLabel.removeAttribute("style", "display:none")
+            outLabel.removeAttribute("style", "display:none")
+            overLabel.removeAttribute("style", "display:none")
             userId.removeAttribute("type","hidden")
             inActual.removeAttribute("type","hidden")
             outActual.removeAttribute("type","hidden")
@@ -134,6 +155,9 @@ function shift() {
             holidayCheck.textContent = "休みにする"
             holidayActual.removeAttribute("style", "display:none")
             if(work["date"] !== date.value){
+              inLabel.setAttribute("style", "display:none")
+              outLabel.setAttribute("style", "display:none")
+              overLabel.setAttribute("style", "display:none")
               userId.setAttribute("type","hidden")
               inActual.setAttribute("type","hidden")
               outActual.setAttribute("type","hidden")
@@ -143,12 +167,18 @@ function shift() {
             } else if(work["date"] === date.value) {
               form.removeAttribute("style","display:none")
               if(work["holiday_actual"] === true ){
+                inLabel.setAttribute("style", "display:none")
+                outLabel.setAttribute("style", "display:none")
+                overLabel.setAttribute("style", "display:none")
                 inActual.setAttribute("type","hidden")
                 outActual.setAttribute("type","hidden")
                 overTime.setAttribute("type","hidden")
                 holidayCheck.textContent = "休みを取り消す"
                 holidayActual.checked = true
               } else if(work["holiday_actual"] === false ){
+                inLabel.removeAttribute("style", "display:none")
+                outLabel.removeAttribute("style", "display:none")
+                overLabel.removeAttribute("style", "display:none")
                 userId.removeAttribute("type","hidden")
                 inActual.removeAttribute("type","hidden")
                 outActual.removeAttribute("type","hidden")
@@ -160,6 +190,9 @@ function shift() {
           }
           holidayActual.addEventListener("click", ()=>{ // 休みにするのチェックボックスがクリックされると表の色付けも対応して変化
             if(holidayCheck.textContent === "休みにする"){ // チェックを入れる(休みにする)と表の色が消える
+              inLabel.setAttribute("style", "display:none")
+              outLabel.setAttribute("style", "display:none")
+              overLabel.setAttribute("style", "display:none")
               inActual.setAttribute("type","hidden")
               outActual.setAttribute("type","hidden")
               overTime.setAttribute("type","hidden")
@@ -171,6 +204,9 @@ function shift() {
                 }
               })
             } else if(holidayCheck.textContent === "休みを取り消す"){ // チェックを外す(休みを取り消す)と表に色がつく
+              inLabel.removeAttribute("style", "display:none")
+              outLabel.removeAttribute("style", "display:none")
+              overLabel.removeAttribute("style", "display:none")
               inActual.removeAttribute("type","hidden")
               outActual.removeAttribute("type","hidden")
               overTime.removeAttribute("type","hidden")

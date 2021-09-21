@@ -1,23 +1,23 @@
 <div class="background">
     <%= form_with model: @group, url: groups_path, class: 'registration-main', local: true do |f| %>
-    <div class='form-wrap'>
-      <div class='form-main'>
-        <h1 class='form-main-text'>
-          会社名・店舗名登録
+      <div class='app-title'>
+        <%= image_tag 'shift_success_logo_removebg.png', class:'icon' %>
+        <h1 class='app-title-text'>
+          <span class="gray-s">S</span>hift Success
         </h1>
+      </div>
+      <div class="form-main-text">
+        <h2>会社名・店舗名登録</h2>
       </div>
 
       <%= render 'layouts/error_messages', model: f.object, locals: { model: @group } %>
 
       <div class="form-group">
-          <label class="form-sub-text">※ 登録済みの方も入力して下さい</label>
-        <%= f.text_area :group_name, class:"input-group", placeholder:"例) 〇〇株式会社", maxlength:"40" %>
+        <label>※ 登録済みの方も入力して下さい</label>
+        <%= f.text_field :group_name, class:"input-group", placeholder:"例) 〇〇株式会社", maxlength:"40" %>
       </div>
-      
-
       <div class="form-group">
         <%= f.submit "次へ" ,class:"btn" %>
       </div>
-    </div>
     <% end %>
 </div>
