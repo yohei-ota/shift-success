@@ -1,18 +1,4 @@
-<header class="header">
-  <div class="smart-menu">
-    <div class='smart-app-title'>
-      <%= image_tag 'shift_success_logo_removebg.png', class:'smart-icon' %>
-      <h1 class='smart-app-title-text'>
-        Shift Success
-      </h1>
-    </div>
-    <div class="user-header">
-      <div class="current-group">
-        <%= current_user.group.group_name %>
-      </div>
-    </div>
-  </div>
-</header>
+<%= render "layouts/user_header"%>
 
 <div class="background">
     <div class="make-user-sub">
@@ -42,7 +28,7 @@
             <% if i % 7 == 0 %>
               <tr>
             <% end %>
-            <%# 先月・来月にはclass属性を付与 %>
+            <%# 先月・来月には個別のclass属性を付与 %>
             <% if start_month.month == @today.month - 1 || start_month.month == @today.month + 1 %>
               <% if start_month.wday == 0 %>
                 <td class="prev-next-month-sun"><%= start_month.strftime("%d").to_i %></td>
@@ -129,7 +115,7 @@
               </div>
               <div class="form-group">
                 <div class="check-box-form">
-                  <%= i.check_box :holiday, :as => :boolean, class:"check-box" %>
+                  <%= i.check_box :holiday, as: :boolean, class:"check-box" %>
                   <div class="form-text">
                     <label>休み</label>
                   </div>
@@ -146,33 +132,11 @@
             </div>
 
           <div class='form-group'>
-            <%= f.submit "送信" ,class:"submit-btn" %>
+            <%= f.submit "送信", class:"submit-btn" %>
           </div>
         </div>
       <% end %>
  </div>
 </div>
 
-
-<footer class="footer">
-  <ul class="bottom-menu">
-    <li class="bottom-list">
-      <%= link_to "ホーム", user_posts_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
-    </li>
-    <li class="bottom-list">
-      <%= link_to "就業履歴", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
-    </li>
-    <li class="bottom-list">
-      <%= link_to "チャット", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
-    </li>
-    <li class="bottom-list">
-      <%= link_to "お給料", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
-    </li>
-    <li class="bottom-list">
-      <%= link_to "シフト希望", new_work_schedule_path(current_user.group_id), class:"bottom-name" %><i class="アイコンのコード"></i><br>
-    </li>
-    <li class="bottom-list">
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bottom-name" %><i class="アイコンのコード"></i><br>
-    </li>
-  </ul>
-</footer>
+<%= render "layouts/user_footer"%>
