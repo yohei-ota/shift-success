@@ -10,6 +10,9 @@
         <div class="current-month-title">
           <div class="sub-title"><%= @today.strftime('%Y年%m月') %></div>
         </div>
+        <div class="color-explain">
+          <span class="orange-explain">■</span>確定シフト<span class="pink-explain">■</span>シフト希望
+        </div>
       </div>
       <table class="shift-table">
         <tr>
@@ -41,15 +44,15 @@
             <%# 今月に確定シフトを表示 %>
             <% if @start_month.wday == 0 %>
               <td class="current-month-sun-num">
-                <%= render "layouts/user_index_calender", locals: { works: @works, start_month: @start_month } %>
+                <%= render "layouts/user_index_calender", locals: { works: @works, start_month: @start_month, plans: @plans } %>
               </td>
             <% elsif @start_month.wday == 6%>
               <td class="current-month-sat-num">
-                <%= render "layouts/user_index_calender", locals: { works: @works, start_month: @start_month } %>
+                <%= render "layouts/user_index_calender", locals: { works: @works, start_month: @start_month, plans: @plans } %>
               </td>
             <% else %>
               <td class="current-month-num">
-               <%= render "layouts/user_index_calender", locals: { works: @works, start_month: @start_month } %>
+               <%= render "layouts/user_index_calender", locals: { works: @works, start_month: @start_month, plans: @plans } %>
               </td>
             <% end %>
           <% end %>

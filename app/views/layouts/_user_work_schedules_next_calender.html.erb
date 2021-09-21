@@ -1,6 +1,6 @@
-<%= @start_month.strftime("%d").to_i %>
+<%= @start_next_month.strftime("%d").to_i %>
 <% @works.each do |work| %>
-  <% if work.date == @start_month %>
+  <% if work.date == @start_next_month %>
     <% if work.holiday_actual == false %>
       <div class="shift-new-calender">
         <%= work.datetime_in_actual[0,2] %>:<%= work.datetime_in_actual[2,3] %> ~ 
@@ -10,8 +10,8 @@
   <% end %>
 <% end %>
 <% @plans.each do |plan| %>
-  <% if (plan.datetime_in.strftime("%m%d").to_i == @start_month.strftime("%m%d").to_i) %>
-    <% if @works.where(date: @start_month).blank? %>
+  <% if (plan.datetime_in.strftime("%m%d").to_i == @start_next_month.strftime("%m%d").to_i) %>
+    <% if @works.where(date: @start_next_month).blank? %>
       <% if plan.holiday == true %>
         <div class="plan-new-calender">
           休み

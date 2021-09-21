@@ -1,11 +1,27 @@
 <%= @start_month.strftime("%d").to_i %>
   <% @works.each do |work| %>
-    <% if work.date.day == @start_month.strftime("%d").to_i %>
+    <% if work.date == @start_month %>
       <% if work.holiday_actual == false %>
         <div class="shift-in-calender">
           <%= work.datetime_in_actual[0,2] %>:<%= work.datetime_in_actual[2,3] %> ~ 
           <%= work.datetime_out_actual[0,2] %>:<%= work.datetime_out_actual[2,3] %>
         </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% @plans.each do |plan| %>
+    <% if (plan.datetime_in.strftime("%m%d").to_i == @start_month.strftime("%m%d").to_i) %>
+      <% if @works.where(date: @start_month).blank? %>
+        <% if plan.holiday == true %>
+          <div class="plan-in-calender">
+            休み
+          </div>
+        <% else %>
+          <div class="plan-in-calender">
+            <%= plan.datetime_in.strftime("%H:%M") %> ~ 
+            <%= plan.datetime_out.strftime("%H:%M") %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
