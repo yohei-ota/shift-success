@@ -23,7 +23,7 @@ function shift() {
       shift.removeAttribute("style", "display:none")
       calender.setAttribute("style", "display:none")
       timeId.forEach(function(target){ // 背景色をリセット
-        target.removeAttribute("style", "background-color:#004e0a")
+        target.removeAttribute("style", "background-color:gray")
       })
       for(let f = 0; f < gon.users.length; f++){ // 申請希望を出しているユーザーの名前を取得してループ
         let user = gon.users[f]
@@ -63,10 +63,10 @@ function shift() {
                 let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
                 if(user["name"] === trName){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                   if((timeIn >= startCell) || (timeInMinute >= startCell)){
-                    target.setAttribute("style", "background-color:#004e0a;")
+                    target.setAttribute("style", "background-color:gray;")
                   }
                   if(timeOutMinute > endCell){
-                    target.removeAttribute("style", "background-color:#004e0a;")
+                    target.removeAttribute("style", "background-color:gray;")
                   }
                 }
               })
@@ -79,10 +79,10 @@ function shift() {
     
     timeId.forEach(function(target){ // セルがクリックされたら色がつくor消える
       target.addEventListener("mousedown", function(){
-        if(target.getAttribute("style") === "background-color:#004e0a;"){
-          this.removeAttribute("style", "background-color:#004e0a;")
+        if(target.getAttribute("style") === "background-color:gray;"){
+          this.removeAttribute("style", "background-color:gray;")
         } else {
-          this.setAttribute("style", "background-color:#004e0a;")
+          this.setAttribute("style", "background-color:gray;")
         }
       })
     })
@@ -95,7 +95,7 @@ function shift() {
         colorCell = [] // 色づいてるセルの情報をリセット
         for(let f = 0; f < 50; f++){ //色づいてるセルの情報を取得
           let cell = tableRow[i+1].children[f]
-          if(cell.getAttribute("style", "background-color:#004e0a;")){
+          if(cell.getAttribute("style", "background-color:gray;")){
             colorCell.push(cell.id)
           }
         }

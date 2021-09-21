@@ -15,10 +15,10 @@ function shift() {
             let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
             if((user.name == trName) && (user.id === work.user_id)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
               if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
-                target.setAttribute("style", "background-color:#004e0a;")
+                target.setAttribute("style", "background-color:gray;")
               }
               if(timeOutMinute > work.datetime_out_actual){
-                target.removeAttribute("style", "background-color:#004e0a;")
+                target.removeAttribute("style", "background-color:gray;")
               }
             }
           })
