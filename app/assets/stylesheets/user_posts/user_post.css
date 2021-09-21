@@ -16,32 +16,63 @@
 .current-month-num,
 .current-month-sat-num,
 .current-month-sun-num,
+.current-month-num-schedule,
+.current-month-sat-num-schedule,
+.current-month-sun-num-schedule,
 .prev-next-month,
 .prev-next-month-sat,
-.prev-next-month-sun {
-  font-size: 20px;
+.prev-next-month-sun,
+.prev-next-month-schedule,
+.prev-next-month-sat-schedule,
+.prev-next-month-sun-schedule {
   vertical-align: top;
   padding: 5px 0 0 5px;
   border-bottom: solid 1px rgb(200, 200, 200);
   border-left: solid 1px rgb(200, 200, 200);
-  width: 130px;
-  height: 130px;
 }
+.current-month-num,
+.current-month-sat-num,
+.current-month-sun-num,
+.prev-next-month,
+.prev-next-month-sat,
+.prev-next-month-sun {
+  font-size: 20px;
+  width: 100px;
+  height: 120px;
+}
+.current-month-num-schedule,
+.current-month-sat-num-schedule,
+.current-month-sun-num-schedule,
+.prev-next-month-schedule,
+.prev-next-month-sat-schedule,
+.prev-next-month-sun-schedule {
+  font-size: 15px;
+  width: 50px;
+  height: 75px;
+}
+.current-month-sat-schedule,
+.current-month-sat-num-schedule,
 .current-month-sat,
 .current-month-sat-num {
   color: rgb(66, 66, 252);
 }
+.current-month-sun-schedule,
+.current-month-sun-num-schedule,
 .current-month-sun,
 .current-month-sun-num {
   color: rgb(247, 55, 55);
 }
 .make-user-main,
 .make-user-sub {
-  height: 90%;
+  height: 100%;
   width: 90%;
   display: flex;
   align-items: center;
   overflow: scroll;
+}
+.plan-in-calender,
+.shift-in-calender {
+  font-size: 18px;
 }
 .plan-in-calender,
 .plan-new-calender {
@@ -53,8 +84,23 @@
 .shift-new-calender {
   color: #888;
   font-weight: lighter;
-  margin-top: 10px;
   padding:0 8px;
+}
+.prev-next-month,
+.prev-next-month-schedule {
+  color: rgb(204, 204, 204);
+}
+.prev-next-month-sat,
+.prev-next-month-sat-schedule {
+  color: rgb(152, 206, 250);
+}
+.prev-next-month-sun,
+.prev-next-month-sun-schedule {
+  color: pink;
+}
+.plan-new-calender,
+.shift-new-calender {
+  font-size: 12px;
 }
 .shift-in-calender,
 .shift-new-calender {
@@ -84,6 +130,11 @@
   color: #444;
   font-size: 20px;
 }
+.calender-list {
+  width: 80%;
+  height: 100%;
+  overflow: scroll;
+}
 .check-box-form {
   display: flex;
   align-items: center;
@@ -103,7 +154,8 @@
   font-size: 30px;
   margin-left: 10px;
 }
-.current-month-num {
+.current-month-num,
+.current-month-num-schedule {
   color: #777;
 }
 .current-month-title {
@@ -135,16 +187,18 @@
   font-weight: bold;
 }
 .make-shift {
-  width: 40%;
+  width: 50%;
+  height: 100%;
 }
 .make-user-main {
+  padding-bottom: 50px;
   justify-content: center;
 }
 .make-user-sub {
   justify-content: space-between;
 }
 .new-form-wrap {
-  margin-top: 50px;
+  margin-top: 70px;
   background-color: #f8f8f8;
   border: #333 solid 1px;
   padding-bottom: 20px;
@@ -153,15 +207,6 @@
   margin-top: 20px;
   display: flex;
 }
-.prev-next-month {
-  color: rgb(204, 204, 204);
-}
-.prev-next-month-sat {
-  color: rgb(152, 206, 250);
-}
-.prev-next-month-sun {
-  color: pink;
-}
 .select-form{
   width: 60px;
   border: #999 solid 1px;
@@ -169,15 +214,8 @@
   text-align: center;
 }
 .shift-calender {
-  width: 50%;
-}
-.plan-in-calender,
-.shift-in-calender {
-  font-size: 20px;
-}
-.plan-new-calender,
-.shift-new-calender {
-  font-size: 15px;
+  width: 90%;
+  height: 65%;
 }
 .smart-app-title {
   display: flex;
@@ -193,11 +231,11 @@
 }
 .sub-title {
   display: inline-block;
-  margin: 40px 0 5px 0;
+  margin: 20px 0 5px 0;
   font-size: 23px;
 }
 .user-calender {
-  width: 90%;
+  width: 70%;
 }
 .user-header {
   display: flex;
