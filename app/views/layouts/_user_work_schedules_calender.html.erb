@@ -13,11 +13,11 @@
   <% if (plan.datetime_in.strftime("%m%d").to_i == @start_month.strftime("%m%d").to_i) %>
     <% if @works.where(date: @start_month).blank? %>
       <% if plan.holiday == true %>
-        <div class="plan-in-calender">
+        <div class="plan-new-calender">
           休み
         </div>
       <% else %>
-        <div class="plan-in-calender">
+        <div class="plan-new-calender">
           <%= plan.datetime_in.strftime("%H:%M") %> ~ 
           <%= plan.datetime_out.strftime("%H:%M") %>
         </div>
