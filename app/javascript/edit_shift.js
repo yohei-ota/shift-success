@@ -6,11 +6,11 @@ function shift() {
     let date = document.getElementById("calender") //カレンダーから日付選択
     let tableRow = document.getElementById("table").rows // 一行
     let timeId = [...document.querySelectorAll(".border-th")] // 表部分
-    let greenCell = [] // 黄緑色付きのセル
-    let pinkCell = [] // ピンク色付きのセル
+    let greenCell = [] // グレー付きのセル
+    let pinkCell = [] // ピンク付きのセル
     
 
-    btn.setAttribute("style", "display:none")
+    btn.setAttribute("style", "display:none") // ページを読み込んだ時はボタンを非表示
 
     for(let f = 0; f < gon.users.length; f++){ // ページを読み込んだ時はシフトを非表示
       let user = gon.users[f]
@@ -24,7 +24,7 @@ function shift() {
     }
     
     mode.addEventListener("click", () =>{ // モード切り替え
-      if(mode.getAttribute("style") === "background-color:#b9b9b9;"){ // 黄緑
+      if(mode.getAttribute("style") === "background-color:#b9b9b9;"){ // グレー
         mode.setAttribute("style", "background-color:#f8b1f2;") // ピンク
         mode.textContent = "残業モード解除"
       } else {
@@ -55,7 +55,7 @@ function shift() {
           pinkCell = []
           for(let f = 0; f < 50; f++){ //色づいてるセルの情報を取得
             let cell = tableRow[i+1].children[f]
-            if(cell.getAttribute("style") === "background-color:gray;"){ // 黄緑セルを取得
+            if(cell.getAttribute("style") === "background-color:gray;"){ // グレーセルを取得
               greenCell.push(cell.id)
             } else if(cell.getAttribute("style") === "background-color:#f8b1f2;"){ // ピンクセルを取得
               pinkCell.push(cell.id)
