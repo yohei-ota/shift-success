@@ -7,11 +7,12 @@
 }
 .border-th,
 .border-td {
-  border-left: solid 1px rgb(200, 200, 200);
-  border-bottom: solid 1px rgb(200, 200, 200);
+  border-left: solid 1px #c8c8c8;
+  border-bottom: solid 1px #c8c8c8;
 }
 .calender-comment,
 .mode-btn,
+.time-explain,
 .today-shift-day {
   color: #333;
 }
@@ -127,7 +128,7 @@
   font-size: 20px;
   font-weight: 580;
   border-radius: 20px;
-  box-shadow: 2px 2px 2px 1px rgb(83, 83, 83);
+  box-shadow: 2px 2px 2px 1px #535353;
   width: 150px;
   height: 50px;
 }
@@ -139,17 +140,20 @@
 }
 .shift-one {
   display: inline-flex;
-  background: linear-gradient(transparent 90%, rgb(185, 185, 185) 70%);
+  background: linear-gradient(transparent 90%, #b9b9b9 70%);
 }
 .table-head {
   width: 100px;
   border-right: solid 3px #999;
   padding: 5px 10px;
-  border-bottom: solid 1px rgb(200, 200, 200);
+  border-bottom: solid 1px #c8c8c8;
 }
 .table-scroll {
   overflow-x: auto;
   margin: 20px 30px 30px;  
+}
+.time-explain {
+  margin-left: 10px;
 }
 .today-shift-day {
   font-size: 20px;

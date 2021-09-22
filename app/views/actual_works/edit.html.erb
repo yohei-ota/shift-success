@@ -11,7 +11,7 @@
         <h1 class="admin-group-name"><%= "#{current_admin.group.group_name}"%></h1>
       </div>
       <div class="over-mode">
-        <button type="button", class="mode-btn" id="over-early-mode", style="background-color:#9dda23;">残業モード</button>
+        <button type="button", class="mode-btn" id="over-early-mode", style="background-color:#b9b9b9;">残業モード</button>
       </div>
       <%# シフト編集の表部分 %>
       <div class="table-scroll">
@@ -36,6 +36,9 @@
       </div>
 
       <%# シフト編集のフォーム部分 %>
+      <div class="time-explain", id="time-explain">
+        時間表記  12:00 → 1200
+      </div>
       <div class="edit-form">
         <% @works.each_with_index do |work, w| %>
           <% @users.each_with_index do |user, u| %>

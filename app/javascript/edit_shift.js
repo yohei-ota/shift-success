@@ -3,14 +3,16 @@ function shift() {
     const btn = document.getElementById("btn") // 保存ボタン
     const mode = document.getElementById("over-early-mode") // モード変更ボタン
     const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
+    const explain = document.getElementById("time-explain") // 時間表記の説明
     let date = document.getElementById("calender") //カレンダーから日付選択
     let tableRow = document.getElementById("table").rows // 一行
     let timeId = [...document.querySelectorAll(".border-th")] // 表部分
-    let greenCell = [] // 黄緑色付きのセル
-    let pinkCell = [] // ピンク色付きのセル
+    let greenCell = [] // グレー付きのセル
+    let pinkCell = [] // ピンク付きのセル
     
 
-    btn.setAttribute("style", "display:none")
+    btn.setAttribute("style", "display:none") // ページを読み込んだ時はボタンを非表示
+    explain.setAttribute("style", "display:none")
 
     for(let f = 0; f < gon.users.length; f++){ // ページを読み込んだ時はシフトを非表示
       let user = gon.users[f]
@@ -24,11 +26,11 @@ function shift() {
     }
     
     mode.addEventListener("click", () =>{ // モード切り替え
-      if(mode.getAttribute("style") === "background-color:#9dda23;"){ // 黄緑
+      if(mode.getAttribute("style") === "background-color:#b9b9b9;"){ // グレー
         mode.setAttribute("style", "background-color:#f8b1f2;") // ピンク
         mode.textContent = "残業モード解除"
       } else {
-        mode.setAttribute("style", "background-color:#9dda23;")
+        mode.setAttribute("style", "background-color:#b9b9b9;")
         mode.textContent = "残業モード"
       }
     })
@@ -36,11 +38,11 @@ function shift() {
     
     timeId.forEach(function(target){
       target.addEventListener("mousedown", function(){ // モードによってクリックした時の背景色が変わる
-        if(mode.getAttribute("style") === "background-color:#9dda23;"){
-          if(this.getAttribute("style") === "background-color:#004e0a;"){
-            this.removeAttribute("style", "background-color:#004e0a;")
+        if(mode.getAttribute("style") === "background-color:#b9b9b9;"){
+          if(this.getAttribute("style") === "background-color:gray;"){
+            this.removeAttribute("style", "background-color:gray;")
           } else {
-            this.setAttribute("style", "background-color:#004e0a;")
+            this.setAttribute("style", "background-color:gray;")
           }
         } else if(mode.getAttribute("style") === "background-color:#f8b1f2;"){
           if(this.getAttribute("style") === "background-color:#f8b1f2;"){
@@ -55,7 +57,7 @@ function shift() {
           pinkCell = []
           for(let f = 0; f < 50; f++){ //色づいてるセルの情報を取得
             let cell = tableRow[i+1].children[f]
-            if(cell.getAttribute("style") === "background-color:#004e0a;"){ // 黄緑セルを取得
+            if(cell.getAttribute("style") === "background-color:gray;"){ // グレーセルを取得
               greenCell.push(cell.id)
             } else if(cell.getAttribute("style") === "background-color:#f8b1f2;"){ // ピンクセルを取得
               pinkCell.push(cell.id)
@@ -125,9 +127,10 @@ function shift() {
     
     date.addEventListener("input", ()=>{ // カレンダーで日付選択をした時に対応するシフトを表示
       btn.removeAttribute("style", "display:none")
+      explain.removeAttribute("style", "display:none")
       calender.setAttribute("style", "display:none")
       timeId.forEach(function(target){ // 背景色をリセット
-        target.removeAttribute("style", "background-color:#004e0a")
+        target.removeAttribute("style", "background-color:gray")
       })
       for(let f = 0; f < gon.users.length; f++){
         let user = gon.users[f]
@@ -200,7 +203,7 @@ function shift() {
               timeId.forEach(function(target){
                 let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
                 if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
-                  target.removeAttribute("style", "background-color:#004e0a;")
+                  target.removeAttribute("style", "background-color:gray;")
                 }
               })
             } else if(holidayCheck.textContent === "休みを取り消す"){ // チェックを外す(休みを取り消す)と表に色がつく
@@ -219,10 +222,10 @@ function shift() {
                 let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
                 if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                   if((timeIn >= inActual.value) || (timeInMinute >= inActual.value)){
-                    target.setAttribute("style", "background-color:#004e0a;")
+                    target.setAttribute("style", "background-color:gray;")
                   }
                   if(timeOutMinute > outActual.value){
-                    target.removeAttribute("style", "background-color:#004e0a;")
+                    target.removeAttribute("style", "background-color:gray;")
                   }
                 }
               })
@@ -237,10 +240,10 @@ function shift() {
               let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
               if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                 if((timeIn >= inActual.value) || (timeInMinute >= inActual.value)){
-                  target.setAttribute("style", "background-color:#004e0a;")
+                  target.setAttribute("style", "background-color:gray;")
                 }
                 if(timeOutMinute > outActual.value){
-                  target.removeAttribute("style", "background-color:#004e0a;")
+                  target.removeAttribute("style", "background-color:gray;")
                 }
               }
             })

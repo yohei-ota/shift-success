@@ -7,6 +7,7 @@ class ActualWorksController < ApplicationController
     @users = User.where(group_id: current_admin.group_id)
     gon.schedules = @schedules
     gon.users = @users
+    gon.admin = current_admin
   end
 
   def create
