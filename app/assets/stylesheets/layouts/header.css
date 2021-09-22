@@ -63,6 +63,7 @@ th {
 .background {
   background-color: #eee;
   position: relative;
+  width: 100vw;
   height: 100vh;
   padding-top: 105px;
   padding-bottom: 60px;
