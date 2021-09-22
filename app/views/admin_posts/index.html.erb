@@ -17,9 +17,9 @@
             <% end %>
           </tr>
           <% @users.each_with_index do |users, f| %>
-            <tbody id=<%= "group#{f}" %>>
+            <tbody>
               <tr>
-                <td class="table-head", id=<%= "user#{f}" %>><%= users.name %></td>
+                <td class="table-head"><%= users.name %></td>
                 <% 50.times do |i|%>
                   <td class="border-th", id=<%= "#{i}" %>><%=""%></td>
                 <% end %>
@@ -30,7 +30,7 @@
       </div>
       <%# 本日のシフト一覧 %>
       <div class="today-shift-list">
-        <% @works.each_with_index do |work, w| %>
+        <% @works.each do |work| %>
           <% @users.each do |user| %>
             <div class="today-shift-day">
               <% if work.user_id == user.id %>
