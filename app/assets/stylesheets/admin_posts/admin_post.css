@@ -12,6 +12,7 @@
 }
 .calender-comment,
 .mode-btn,
+.time-explain,
 .today-shift-day {
   color: #333;
 }
@@ -150,6 +151,9 @@
 .table-scroll {
   overflow-x: auto;
   margin: 20px 30px 30px;  
+}
+.time-explain {
+  margin-left: 10px;
 }
 .today-shift-day {
   font-size: 20px;

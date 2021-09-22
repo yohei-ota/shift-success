@@ -3,6 +3,7 @@ function shift() {
     const btn = document.getElementById("btn") // 保存ボタン
     const mode = document.getElementById("over-early-mode") // モード変更ボタン
     const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
+    const explain = document.getElementById("time-explain") // 時間表記の説明
     let date = document.getElementById("calender") //カレンダーから日付選択
     let tableRow = document.getElementById("table").rows // 一行
     let timeId = [...document.querySelectorAll(".border-th")] // 表部分
@@ -11,6 +12,7 @@ function shift() {
     
 
     btn.setAttribute("style", "display:none") // ページを読み込んだ時はボタンを非表示
+    explain.setAttribute("style", "display:none")
 
     for(let f = 0; f < gon.users.length; f++){ // ページを読み込んだ時はシフトを非表示
       let user = gon.users[f]
@@ -125,6 +127,7 @@ function shift() {
     
     date.addEventListener("input", ()=>{ // カレンダーで日付選択をした時に対応するシフトを表示
       btn.removeAttribute("style", "display:none")
+      explain.removeAttribute("style", "display:none")
       calender.setAttribute("style", "display:none")
       timeId.forEach(function(target){ // 背景色をリセット
         target.removeAttribute("style", "background-color:gray")
