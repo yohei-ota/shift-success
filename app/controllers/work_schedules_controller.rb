@@ -1,4 +1,5 @@
 class WorkSchedulesController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @today = Date.today
