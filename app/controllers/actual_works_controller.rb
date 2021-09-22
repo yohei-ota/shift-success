@@ -18,7 +18,6 @@ class ActualWorksController < ApplicationController
     redirect_to new_actual_work_path
   end
 
-
   def edit
     @works = ActualWork.where(group_id: current_admin.group_id).where("date >= ?", Date.today).order("user_id ASC")
     gon.works = @works
