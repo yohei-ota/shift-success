@@ -1,14 +1,11 @@
 class ActualWorksController < ApplicationController
   before_action :authenticate_admin!
+  before_action :page_ready, only: [:new, :edit]
 
   def new
-    @today = Date.today
-    @schedules = WorkSchedule.where(group_id: current_admin.group_id).where("datetime_in >= ?", Date.today)
     @works = ActualWork.new
-    @users = User.where(group_id: current_admin.group_id)
+    @schedules = WorkSchedule.where(group_id: current_admin.group_id).where("datetime_in >= ?", Date.today)
     gon.schedules = @schedules
-    gon.users = @users
-    gon.admin = current_admin
   end
 
   def create
@@ -23,12 +20,8 @@ class ActualWorksController < ApplicationController
 
 
   def edit
-    @today = Date.today
     @works = ActualWork.where(group_id: current_admin.group_id).where("date >= ?", Date.today).order("user_id ASC")
-    @users = User.where(group_id: current_admin.group_id)
     gon.works = @works
-    gon.users = @users
-    gon.admin = current_admin
   end
 
   def update
@@ -39,6 +32,13 @@ class ActualWorksController < ApplicationController
 
 
   private
+
+  def page_ready
+    @today = Date.today
+    @users = User.where(group_id: current_admin.group_id)
+    gon.users = @users
+    gon.admin = current_admin
+  end
 
   def actual_work_params
     params.require(:actual_work).permit(:user_id, :date, :datetime_in_actual, :datetime_out_actual, :over_early_time, :holiday_actual).merge(group_id: params[:id])
