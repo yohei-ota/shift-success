@@ -4,9 +4,9 @@
   <div class="make-user-main">
     <div class="user-calender">
       <div class="page-head">
-          <div class="current-user-name">
-            <%= current_user.name %>
-          </div>
+        <div class="current-user-name">
+          <%= current_user.name %>
+        </div>
         <div class="current-month-title">
           <div class="sub-title"><%= @today.strftime('%Y年%m月') %></div>
         </div>
@@ -61,6 +61,67 @@
             </tr>
           <% end %>
           <% @start_month += 1 %>
+        <% end %>
+      </table>
+    </div>
+
+
+    <div class="user-calender">
+      <div class="page-head">
+        <div class="next-month-title">
+          <div class="sub-title"><%= @today.next_month.beginning_of_month.strftime('%Y年%m月') %></div>
+        </div>
+        <div class="color-explain">
+          <span class="orange-explain">■</span>確定シフト<span class="pink-explain">■</span>シフト希望
+        </div>
+      </div>
+      <table class="shift-table">
+        <tr>
+          <th class="current-month-sun">日</th>
+          <th class="current-month">月</th>
+          <th class="current-month">火</th>
+          <th class="current-month">水</th>
+          <th class="current-month">木</th>
+          <th class="current-month">金</th>
+          <th class="current-month-sat">土</th>
+        </tr>
+        <% @start_next_month = @today.next_month.at_beginning_of_month.at_beginning_of_week - 1 %> <%# 来月の最初の週の日曜日の日付 %>
+        <%# ７*５の表にカレンダーを作成 %>
+        <% 35.times do |i|%>
+          <%# 週初めに<tr>開始タグをつける %>
+          <% if i % 7 == 0 %>
+            <tr>
+          <% end %>
+          <%# 先月・来月には個別のclass属性を付与 %>
+          <% if @start_next_month.month == @today.next_month.month - 1 || @start_next_month.month == @today.next_month.month + 1 %>
+            <% if @start_next_month.wday == 0 %>
+              <td class="prev-next-month-sun"><%= @start_next_month.strftime("%d").to_i %></td>
+            <% elsif @start_next_month.wday == 6 %>
+              <td class="prev-next-month-sat"><%= @start_next_month.strftime("%d").to_i %></td>
+            <% else%>
+              <td class="prev-next-month"><%= @start_next_month.strftime("%d").to_i %></td>
+            <% end %>
+          <% else %>
+            <%# 今月に確定シフトを表示 %>
+            <% if @start_next_month.wday == 0 %>
+              <td class="current-month-sun-num">
+                <%= render "layouts/user_index_next_calender", locals: { works: @works, start_next_month: @start_next_month, plans: @plans } %>
+              </td>
+            <% elsif @start_next_month.wday == 6%>
+              <td class="current-month-sat-num">
+                <%= render "layouts/user_index_next_calender", locals: { works: @works, start_next_month: @start_next_month, plans: @plans } %>
+              </td>
+            <% else %>
+              <td class="current-month-num">
+                <%= render "layouts/user_index_next_calender", locals: { works: @works, start_next_month: @start_next_month, plans: @plans } %>
+              </td>
+            <% end %>
+          <% end %>
+          <%# 週終わりに</tr>閉じタグをつける %>
+          <% if i % 7 == 6 %>
+            </tr>
+          <% end %>
+          <% @start_next_month += 1 %>
         <% end %>
       </table>
     </div>

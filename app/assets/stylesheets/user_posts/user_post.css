@@ -65,7 +65,6 @@
 .make-user-main,
 .make-user-sub {
   height: 100%;
-  width: 90%;
   display: flex;
   align-items: center;
   overflow: scroll;
@@ -85,6 +84,14 @@
   color: #888;
   font-weight: lighter;
   padding:0 8px;
+}
+.prev-next-month,
+.prev-next-month-sat,
+.prev-next-month-sun,
+.prev-next-month-schedule,
+.prev-next-month-sat-schedule,
+.prev-next-month-sun-schedule {
+  background-color: #f5f5f5;
 }
 .prev-next-month,
 .prev-next-month-schedule {
@@ -196,6 +203,7 @@
   justify-content: center;
 }
 .make-user-sub {
+  width: 90%;
   justify-content: space-between;
 }
 .new-form-wrap {
@@ -250,7 +258,8 @@
   font-size: 23px;
 }
 .user-calender {
-  width: 70%;
+  width: 90%;
+  padding: 0 60px 0 60px;
 }
 .user-header {
   display: flex;
