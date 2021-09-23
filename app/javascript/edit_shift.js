@@ -290,6 +290,7 @@ function shift() {
       e.preventDefault()
       update()
       alert("変更を保存しました！")
+      location.href="edit"
     })
   }
 }
