@@ -3,7 +3,6 @@ function shift() {
     const btn = document.getElementById("btn") // 保存ボタン
     const mode = document.getElementById("over-early-mode") // モード変更ボタン
     const calender = document.getElementById("calender-comment") // カレンダーの横のコメント
-    const explain = document.getElementById("time-explain") // 時間表記の説明
     let date = document.getElementById("calender") //カレンダーから日付選択
     let tableRow = document.getElementById("table").rows // 一行
     let timeId = [...document.querySelectorAll(".border-th")] // 表部分
@@ -12,7 +11,6 @@ function shift() {
     
 
     btn.setAttribute("style", "display:none") // ページを読み込んだ時はボタンを非表示
-    explain.setAttribute("style", "display:none")
 
     for(let f = 0; f < gon.users.length; f++){ // ページを読み込んだ時はシフトを非表示
       let user = gon.users[f]
@@ -95,20 +93,20 @@ function shift() {
                   inActual.setAttribute("type","hidden")
                   outActual.setAttribute("type","hidden")
                   overTime.setAttribute("type","hidden")
-                  inLabel.setAttribute("type","hidden")
-                  outLabel.setAttribute("type","hidden")
-                  overLabel.setAttribute("type","hidden")
+                  inLabel.setAttribute("style", "display:none")
+                  outLabel.setAttribute("style", "display:none")
+                  overLabel.setAttribute("style", "display:none")
                   holidayCheck.textContent = "休みを取り消す"
                   holidayActual.checked = true
                 } else { // 色付きのセルがあるとシフトのフォームが表示
                   inActual.removeAttribute("type","hidden")
                   outActual.removeAttribute("type","hidden")
                   overTime.removeAttribute("type","hidden")
-                  inLabel.removeAttribute("type","hidden")
-                  outLabel.removeAttribute("type","hidden")
-                  overLabel.removeAttribute("type","hidden")
-                  inActual.value = startTime
-                  outActual.value = endTime
+                  inLabel.removeAttribute("style", "display:none")
+                  outLabel.removeAttribute("style", "display:none")
+                  overLabel.removeAttribute("style", "display:none")
+                  inActual.value = `${startTime.slice(0,2)}:${startTime.slice(2,4)}`
+                  outActual.value = `${endTime.slice(0,2)}:${endTime.slice(2,4)}`
                   overTime.value = overWork
                   holidayCheck.textContent = "休みにする"
                   holidayActual.checked = false
@@ -127,7 +125,6 @@ function shift() {
     
     date.addEventListener("input", ()=>{ // カレンダーで日付選択をした時に対応するシフトを表示
       btn.removeAttribute("style", "display:none")
-      explain.removeAttribute("style", "display:none")
       calender.setAttribute("style", "display:none")
       timeId.forEach(function(target){ // 背景色をリセット
         target.removeAttribute("style", "background-color:gray")
@@ -157,6 +154,7 @@ function shift() {
             holidayCheck.removeAttribute("style", "display:none")
             holidayCheck.textContent = "休みにする"
             holidayActual.removeAttribute("style", "display:none")
+            form.setAttribute("style","display:none")
             if(work["date"] !== date.value){
               inLabel.setAttribute("style", "display:none")
               outLabel.setAttribute("style", "display:none")
@@ -221,10 +219,10 @@ function shift() {
                 let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
                 let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
                 if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
-                  if((timeIn >= inActual.value) || (timeInMinute >= inActual.value)){
+                  if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
                     target.setAttribute("style", "background-color:gray;")
                   }
-                  if(timeOutMinute > outActual.value){
+                  if(timeOutMinute > work.datetime_out_actual){
                     target.removeAttribute("style", "background-color:gray;")
                   }
                 }
@@ -239,10 +237,10 @@ function shift() {
               let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
               let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
               if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
-                if((timeIn >= inActual.value) || (timeInMinute >= inActual.value)){
+                if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
                   target.setAttribute("style", "background-color:gray;")
                 }
-                if(timeOutMinute > outActual.value){
+                if(timeOutMinute > work.datetime_out_actual){
                   target.removeAttribute("style", "background-color:gray;")
                 }
               }
@@ -276,6 +274,8 @@ function shift() {
               XHR.open("PATCH",`/groups/${gon.admin.group_id}/actual_works/${gon.admin.group_id}`, true)
               XHR.send(formData)
             } else if(holidayActual.checked === false){ // 休みじゃない時はそのまま送信
+              inActual.value = `${inActual.value.slice(0,2)}${inActual.value.slice(3,5)}`
+              outActual.value = `${outActual.value.slice(0,2)}${outActual.value.slice(3,5)}`
               let formData = new FormData(formResult)
               let XHR = new XMLHttpRequest()
               XHR.open("PATCH",`/groups/${gon.admin.group_id}/actual_works/${gon.admin.group_id}`, true)

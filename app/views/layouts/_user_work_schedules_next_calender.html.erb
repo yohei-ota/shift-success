@@ -3,8 +3,8 @@
   <% if work.date == @start_next_month %>
     <% if work.holiday_actual == false %>
       <div class="shift-new-calender">
-        <%= work.datetime_in_actual[0,2] %>:<%= work.datetime_in_actual[2,3] %> ~ 
-        <%= work.datetime_out_actual[0,2] %>:<%= work.datetime_out_actual[2,3] %>
+        <%= work.datetime_in_actual[0,2] %>:<%= work.datetime_in_actual[2,4] %> ~ 
+        <%= work.datetime_out_actual[0,2] %>:<%= work.datetime_out_actual[2,4] %>
       </div>
     <% end %>
   <% end %>

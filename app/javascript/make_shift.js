@@ -32,9 +32,11 @@ function shift() {
           if((schedule["datetime_in"].substr(0,10) === date.value) && (schedule["user_id"] === user["id"]) ){ // カレンダーで選択した日付のシフト希望表示
             if(schedule["holiday"] === true ){ // 休み希望がtrueなら予定休みを表示
               let html = `
-              <div class="shift-one">
-              ${user["name"]}の予定 休み
-              </div>
+                <div class="today-shift-day">
+                  <div class="shift-one">
+                    ${user["name"]}の予定 休み
+                  </div>
+                </div>
               `
               shift.insertAdjacentHTML("beforeend", html)
             } else { //  休み希望がfalseならその日の希望時間を表示
