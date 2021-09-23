@@ -157,6 +157,7 @@ function shift() {
             holidayCheck.removeAttribute("style", "display:none")
             holidayCheck.textContent = "休みにする"
             holidayActual.removeAttribute("style", "display:none")
+            form.setAttribute("style","display:none")
             if(work["date"] !== date.value){
               inLabel.setAttribute("style", "display:none")
               outLabel.setAttribute("style", "display:none")
