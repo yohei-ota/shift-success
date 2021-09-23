@@ -18,14 +18,16 @@ class WorkSchedule < ApplicationRecord
   # end
   # 開始と終了時刻に矛盾があってはいけない
   def time_check
-    if self.datetime_in.present? || self.datetime_out.present?
-      errors.add(:datetime_out, "は勤務開始日時より遅い日時を入力してください") if self.datetime_in > self.datetime_out
+    if self.holiday == false
+      if self.datetime_in.present? || self.datetime_out.present?
+        errors.add(:datetime_out, "は勤務開始日時より遅い日時を入力してください") if self.datetime_in > self.datetime_out
+      end
     end
   end
   # 過去の日時は受け付けない
   def now_time_check
     if self.datetime_in.present? || self.datetime_out.present?
-      errors.add(:datetime_in, "日時を正しく入力してください") if self.datetime_in < DateTime.now
+      errors.add(:datetime_in, "日時を正しく入力してください") if self.datetime_in < Date.today.beginning_of_month
     end
   end
 end
