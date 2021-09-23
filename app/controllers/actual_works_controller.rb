@@ -3,6 +3,9 @@ class ActualWorksController < ApplicationController
   before_action :page_ready, only: [:new, :edit]
 
   def new
+    if ActualWork.exists?
+      @work = ActualWork.where(group_id: current_admin.group_id).where("date >= ?", Date.today).maximum(:date)
+    end
     @works = ActualWork.new
     @schedules = WorkSchedule.where(group_id: current_admin.group_id).where("datetime_in >= ?", Date.today)
     gon.schedules = @schedules
