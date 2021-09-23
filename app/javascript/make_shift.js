@@ -135,6 +135,7 @@ function shift() {
       e.preventDefault()
       form()
       alert("保存されました！")
+      location.href="new"
     })
   }
 }
