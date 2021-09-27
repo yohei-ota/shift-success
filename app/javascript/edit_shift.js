@@ -63,7 +63,7 @@ function shift() {
           }
           for(let f = 0; f < gon.works.length; f++){
             let work = gon.works[f]
-            if(work["date"] === date.value){ // 色付きのセルから入時間・終時間・残業時間を算出
+            if(work.date === date.value){ // 色付きのセルから入時間・終時間・残業時間を算出
               let startWork = Math.min.apply(null, greenCell)
               let endWork = Math.max.apply(null, greenCell)
               let overWork = (pinkCell.length / 2)
@@ -88,7 +88,7 @@ function shift() {
               let inLabel = document.getElementById(`in-label${f}`)
               let outLabel = document.getElementById(`out-label${f}`)
               let overLabel = document.getElementById(`over-early-label${f}`)
-              if((userId.value === user["name"]) &&(work["date"] === date.value)){
+              if((userId.value === user.name) &&(work.date === date.value)){
                 if((greenCell.length === 0) && (pinkCell.length === 0) && (overWork === 0)){ // 色付きのセルがない時はシフトを休みにして非表示
                   inActual.setAttribute("type","hidden")
                   outActual.setAttribute("type","hidden")
@@ -155,7 +155,7 @@ function shift() {
             holidayCheck.textContent = "休みにする"
             holidayActual.removeAttribute("style", "display:none")
             form.setAttribute("style","display:none")
-            if(work["date"] !== date.value){
+            if(work.date !== date.value){
               inLabel.setAttribute("style", "display:none")
               outLabel.setAttribute("style", "display:none")
               overLabel.setAttribute("style", "display:none")
@@ -165,9 +165,9 @@ function shift() {
               overTime.setAttribute("type","hidden")
               holidayCheck.setAttribute("style", "display:none")
               holidayActual.setAttribute("style", "display:none")
-            } else if(work["date"] === date.value) {
+            } else if(work.date === date.value) {
               form.removeAttribute("style","display:none")
-              if(work["holiday_actual"] === true ){
+              if(work.holiday_actual === true ){
                 inLabel.setAttribute("style", "display:none")
                 outLabel.setAttribute("style", "display:none")
                 overLabel.setAttribute("style", "display:none")
@@ -176,7 +176,7 @@ function shift() {
                 overTime.setAttribute("type","hidden")
                 holidayCheck.textContent = "休みを取り消す"
                 holidayActual.checked = true
-              } else if(work["holiday_actual"] === false ){
+              } else if(work.holiday_actual === false ){
                 inLabel.removeAttribute("style", "display:none")
                 outLabel.removeAttribute("style", "display:none")
                 overLabel.removeAttribute("style", "display:none")
@@ -200,7 +200,7 @@ function shift() {
               holidayCheck.textContent = "休みを取り消す"
               timeId.forEach(function(target){
                 let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
-                if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
+                if((userId.value === trName) &&(work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                   target.removeAttribute("style", "background-color:gray;")
                 }
               })
@@ -218,7 +218,7 @@ function shift() {
                 let timeInMinute = ((target.id / 2) * 100) - 70 // 希望入時間(30分)の数値
                 let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
                 let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
-                if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
+                if((userId.value === trName) &&(work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                   if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
                     target.setAttribute("style", "background-color:gray;")
                   }
@@ -236,7 +236,7 @@ function shift() {
               let timeInMinute = ((target.id / 2) * 100) - 70 // 希望入時間(30分)の数値
               let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
               let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
-              if((userId.value === trName) &&(work["date"] === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
+              if((userId.value === trName) &&(work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                 if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
                   target.setAttribute("style", "background-color:gray;")
                 }
@@ -257,14 +257,14 @@ function shift() {
         let user = gon.users[f]
         for(let i = 0; i < gon.works.length; i++){
           let work = gon.works[i]
-          if((work["date"] === date.value) && (user.id === work["user_id"])){
+          if((work.date === date.value) && (user.id === work.user_id)){
             let formResult = document.getElementById(`shift-form${i}`) // 各入力フォーム 
             let userId = document.getElementById(`user-id${i}`)
             let inActual = document.getElementById(`in-time${i}`)
             let outActual = document.getElementById(`out-time${i}`)
             let overTime = document.getElementById(`over-early-time${i}`)
             let holidayActual = document.getElementById(`holiday${i}`)
-            userId.value = work["user_id"] // 表示されているフォームの名前をidに変更
+            userId.value = work.user_id // 表示されているフォームの名前をidに変更
             if(holidayActual.checked === true){ // 休みの時はフォームの時間をリセットして送信
               inActual.value = ""
               outActual.value = ""
