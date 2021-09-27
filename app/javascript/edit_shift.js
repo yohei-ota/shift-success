@@ -49,20 +49,20 @@ function shift() {
             this.setAttribute("style", "background-color:#f8b1f2;")
           }
         }
-        for (let i = 0; i < gon.users.length; i++){
-          let user = gon.users[i]
+        for (let f = 0; f < gon.users.length; f++){
+          let user = gon.users[f]
           greenCell = [] // 色づいてるセルの情報をリセット
           pinkCell = []
-          for(let f = 0; f < 50; f++){ //色づいてるセルの情報を取得
-            let cell = tableRow[i+1].children[f]
+          for(let v = 0; v < 50; v++){ //色づいてるセルの情報を取得
+            let cell = tableRow[f+1].children[v]
             if(cell.getAttribute("style") === "background-color:gray;"){ // グレーセルを取得
               greenCell.push(cell.id)
             } else if(cell.getAttribute("style") === "background-color:#f8b1f2;"){ // ピンクセルを取得
               pinkCell.push(cell.id)
             }
           }
-          for(let f = 0; f < gon.works.length; f++){
-            let work = gon.works[f]
+          for(let i = 0; i < gon.works.length; i++){
+            let work = gon.works[i]
             if(work.date === date.value){ // 色付きのセルから入時間・終時間・残業時間を算出
               let startWork = Math.min.apply(null, greenCell)
               let endWork = Math.max.apply(null, greenCell)
@@ -79,15 +79,15 @@ function shift() {
               } else if(endWork % 2 === 1){
                 endTime = ( '000' + (((endWork / 2) * 100) - 20)).slice( -4 ) // 終時間を4桁数値に変換 12:34 => 1234
               }
-              let userId = document.getElementById(`user-id${f}`) // 対応するフォームを取得
-              let inActual = document.getElementById(`in-time${f}`)
-              let outActual = document.getElementById(`out-time${f}`)
-              let overTime = document.getElementById(`over-early-time${f}`)
-              let holidayActual = document.getElementById(`holiday${f}`)
-              let holidayCheck = document.getElementById(`holiday-check${f}`)
-              let inLabel = document.getElementById(`in-label${f}`)
-              let outLabel = document.getElementById(`out-label${f}`)
-              let overLabel = document.getElementById(`over-early-label${f}`)
+              let userId = document.getElementById(`user-id${i}`) // 対応するフォームを取得
+              let inActual = document.getElementById(`in-time${i}`)
+              let outActual = document.getElementById(`out-time${i}`)
+              let overTime = document.getElementById(`over-early-time${i}`)
+              let holidayActual = document.getElementById(`holiday${i}`)
+              let holidayCheck = document.getElementById(`holiday-check${i}`)
+              let inLabel = document.getElementById(`in-label${i}`)
+              let outLabel = document.getElementById(`out-label${i}`)
+              let overLabel = document.getElementById(`over-early-label${i}`)
               if((userId.value === user.name) &&(work.date === date.value)){
                 if((greenCell.length === 0) && (pinkCell.length === 0) && (overWork === 0)){ // 色付きのセルがない時はシフトを休みにして非表示
                   inActual.setAttribute("type","hidden")
@@ -218,7 +218,7 @@ function shift() {
                 let timeInMinute = ((target.id / 2) * 100) - 70 // 希望入時間(30分)の数値
                 let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
                 let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
-                if((userId.value === trName) &&(work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
+                if((userId.value === trName) && (work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                   if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
                     target.setAttribute("style", "background-color:gray;")
                   }
@@ -229,7 +229,7 @@ function shift() {
               })
             }
           })
-          if(holidayActual.checked === false ){ // 休み希望がtrueなら予定休みを表示
+          if(holidayActual.checked === false ){ // 休み希望がfalseなら表に予定を表示
             timeId.forEach(function(target){ // 入時間から終時間までのセルを色付け
               let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
               let timeIn = ((target.id / 2) - 0.5) * 100 // 希望入時間(0分)の数値 12:34 => 1234

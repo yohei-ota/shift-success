@@ -91,12 +91,12 @@ function shift() {
     
     function form() { // 表の色づいているセルを元に一人ずつの勤務予定をフォームに入力して送信
       let formResult = document.getElementById("shift-form") // 入力フォーム 
-      for (let i = 0; i < gon.users.length; i++){ // ユーザーの名前を取得してループしてユーザー名のフォームに代入
-        let user = gon.users[i]
+      for (let f = 0; f < gon.users.length; f++){ // ユーザーの名前を取得してループしてユーザー名のフォームに代入
+        let user = gon.users[f]
         userId.value = user.id
         colorCell = [] // 色づいてるセルの情報をリセット
-        for(let f = 0; f < 50; f++){ //色づいてるセルの情報を取得
-          let cell = tableRow[i+1].children[f]
+        for(let v = 0; v < 50; v++){ //色づいてるセルの情報を取得
+          let cell = tableRow[f+1].children[v]
           if(cell.getAttribute("style", "background-color:gray;")){
             colorCell.push(cell.id)
           }
