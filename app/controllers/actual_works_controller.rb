@@ -22,7 +22,7 @@ class ActualWorksController < ApplicationController
   end
 
   def edit
-    @works = ActualWork.where(group_id: current_admin.group_id).where("date >= ?", Date.today).order("user_id ASC")
+    @works = ActualWork.where(group_id: current_admin.group_id).where("date >= ?", Date.today.yesterday).order("user_id ASC")
     gon.works = @works
   end
 

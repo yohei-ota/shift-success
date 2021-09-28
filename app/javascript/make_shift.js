@@ -29,12 +29,12 @@ function shift() {
         let user = gon.users[f]
         for(let i = 0; i < gon.schedules.length; i++){ // ユーザー一人のシフト希望を取得してループ
           let schedule = gon.schedules[i]
-          if((schedule["datetime_in"].substr(0,10) === date.value) && (schedule["user_id"] === user["id"]) ){ // カレンダーで選択した日付のシフト希望表示
-            if(schedule["holiday"] === true ){ // 休み希望がtrueなら予定休みを表示
+          if((schedule.datetime_in.substr(0,10) === date.value) && (schedule.user_id === user.id) ){ // カレンダーで選択した日付のシフト希望表示
+            if(schedule.holiday === true ){ // 休み希望がtrueなら予定休みを表示
               let html = `
                 <div class="today-shift-day">
                   <div class="shift-one">
-                    ${user["name"]}の予定 休み
+                    ${user.name}の予定 休み
                   </div>
                 </div>
               `
@@ -43,27 +43,27 @@ function shift() {
               var html = `
                 <div class="today-shift-day">
                   <div class="shift-one">
-                    ${user["name"]}の予定
-                    ${schedule["datetime_in"].substr(5,2)}月
-                    ${schedule["datetime_in"].substr(8,2)}日
-                    ${schedule["datetime_in"].substr(11,2)} : 
-                    ${schedule["datetime_in"].substr(14,2)} ~ 
-                    ${schedule["datetime_out"].substr(11,2)} : 
-                    ${schedule["datetime_out"].substr(14,2)}
-                    ${schedule["add_request"]}
+                    ${user.name}の予定
+                    ${schedule.datetime_in.substr(5,2)}月
+                    ${schedule.datetime_in.substr(8,2)}日
+                    ${schedule.datetime_in.substr(11,2)} : 
+                    ${schedule.datetime_in.substr(14,2)} ~ 
+                    ${schedule.datetime_out.substr(11,2)} : 
+                    ${schedule.datetime_out.substr(14,2)}
+                    ${schedule.add_request}
                   </div>
                 </div>
               `
               shift.insertAdjacentHTML("beforeend", html)
-              let startCell = Number(schedule["datetime_in"].substr(11,2) + schedule["datetime_in"].substr(14,2)) // 表示されている希望時間の数値 12:34 => 1234
-              let endCell = Number(schedule["datetime_out"].substr(11,2) + schedule["datetime_out"].substr(14,2))// 表示されている希望時間の数値
+              let startCell = Number(schedule.datetime_in.substr(11,2) + schedule.datetime_in.substr(14,2)) // 表示されている希望時間の数値 12:34 => 1234
+              let endCell = Number(schedule.datetime_out.substr(11,2) + schedule.datetime_out.substr(14,2))// 表示されている希望時間の数値
               timeId.forEach(function(target){ // 入時間から終時間までのセルを色付け
                 let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
                 let timeIn = ((target.id / 2) - 0.5) * 100 // 希望入時間(0分)の数値 12:34 => 1234
                 let timeInMinute = ((target.id / 2) * 100) - 70 // 希望入時間(30分)の数値
                 let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
                 let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
-                if(user["name"] === trName){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
+                if(user.name === trName){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
                   if((timeIn >= startCell) || (timeInMinute >= startCell)){
                     target.setAttribute("style", "background-color:gray;")
                   }
@@ -91,12 +91,12 @@ function shift() {
     
     function form() { // 表の色づいているセルを元に一人ずつの勤務予定をフォームに入力して送信
       let formResult = document.getElementById("shift-form") // 入力フォーム 
-      for (let i = 0; i < gon.users.length; i++){ // ユーザーの名前を取得してループしてユーザー名のフォームに代入
-        let user = gon.users[i]
+      for (let f = 0; f < gon.users.length; f++){ // ユーザーの名前を取得してループしてユーザー名のフォームに代入
+        let user = gon.users[f]
         userId.value = user.id
         colorCell = [] // 色づいてるセルの情報をリセット
-        for(let f = 0; f < 50; f++){ //色づいてるセルの情報を取得
-          let cell = tableRow[i+1].children[f]
+        for(let v = 0; v < 50; v++){ //色づいてるセルの情報を取得
+          let cell = tableRow[f+1].children[v]
           if(cell.getAttribute("style", "background-color:gray;")){
             colorCell.push(cell.id)
           }
