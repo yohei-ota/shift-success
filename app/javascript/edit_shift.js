@@ -124,8 +124,8 @@ function shift() {
  
     
     date.addEventListener("input", ()=>{ // カレンダーで日付選択をした時に対応するシフトを表示
-      btn.removeAttribute("style", "display:none")
-      calender.setAttribute("style", "display:none")
+      btn.removeAttribute("style", "display:none") // 変更保存ボタンを表示
+      calender.setAttribute("style", "display:none")  // 日付を選択してくださいコメントを非表示
       timeId.forEach(function(target){ // 背景色をリセット
         target.removeAttribute("style", "background-color:gray")
       })
@@ -189,46 +189,6 @@ function shift() {
               }
             }
           }
-          holidayActual.addEventListener("click", ()=>{ // 休みにするのチェックボックスがクリックされると表の色付けも対応して変化
-            if(holidayCheck.textContent === "休みにする"){ // チェックを入れる(休みにする)と表の色が消える
-              inLabel.setAttribute("style", "display:none")
-              outLabel.setAttribute("style", "display:none")
-              overLabel.setAttribute("style", "display:none")
-              inActual.setAttribute("type","hidden")
-              outActual.setAttribute("type","hidden")
-              overTime.setAttribute("type","hidden")
-              holidayCheck.textContent = "休みを取り消す"
-              timeId.forEach(function(target){
-                let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
-                if((userId.value === trName) &&(work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
-                  target.removeAttribute("style", "background-color:gray;")
-                }
-              })
-            } else if(holidayCheck.textContent === "休みを取り消す"){ // チェックを外す(休みを取り消す)と表に色がつく
-              inLabel.removeAttribute("style", "display:none")
-              outLabel.removeAttribute("style", "display:none")
-              overLabel.removeAttribute("style", "display:none")
-              inActual.removeAttribute("type","hidden")
-              outActual.removeAttribute("type","hidden")
-              overTime.removeAttribute("type","hidden")
-              holidayCheck.textContent = "休みにする"
-              timeId.forEach(function(target){ // 入時間から終時間までのセルを色付け
-                let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
-                let timeIn = ((target.id / 2) - 0.5) * 100 // 希望入時間(0分)の数値 12:34 => 1234
-                let timeInMinute = ((target.id / 2) * 100) - 70 // 希望入時間(30分)の数値
-                let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
-                let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
-                if((userId.value === trName) && (work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
-                  if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
-                    target.setAttribute("style", "background-color:gray;")
-                  }
-                  if(timeOutMinute > work.datetime_out_actual){
-                    target.removeAttribute("style", "background-color:gray;")
-                  }
-                }
-              })
-            }
-          })
           if(holidayActual.checked === false ){ // 休み希望がfalseなら表に予定を表示
             timeId.forEach(function(target){ // 入時間から終時間までのセルを色付け
               let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
@@ -250,6 +210,63 @@ function shift() {
       }
     })
     
+
+
+
+    for(let f = 0; f < gon.users.length; f++){
+      for(let i = 0; i < gon.works.length; i++){
+        let work = gon.works[i]
+        let userId = document.getElementById(`user-id${i}`)
+        let inActual = document.getElementById(`in-time${i}`)
+        let outActual = document.getElementById(`out-time${i}`)
+        let overTime = document.getElementById(`over-early-time${i}`)
+        let holidayActual = document.getElementById(`holiday${i}`)
+        let holidayCheck = document.getElementById(`holiday-check${i}`)
+        let inLabel = document.getElementById(`in-label${i}`)
+        let outLabel = document.getElementById(`out-label${i}`)
+        let overLabel = document.getElementById(`over-early-label${i}`)// 休みにするのチェックボックスがクリックされると表の色付けも対応して変化
+        holidayActual.addEventListener("click", ()=>{ 
+          if(holidayCheck.textContent === "休みにする"){ // チェックを入れる(休みにする)と表の色が消える
+            inLabel.setAttribute("style", "display:none")
+            outLabel.setAttribute("style", "display:none")
+            overLabel.setAttribute("style", "display:none")
+            inActual.setAttribute("type","hidden")
+            outActual.setAttribute("type","hidden")
+            overTime.setAttribute("type","hidden")
+            holidayCheck.textContent = "休みを取り消す"
+            timeId.forEach(function(target){
+              let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
+              if((userId.value === trName) &&(work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
+                target.removeAttribute("style", "background-color:gray;")
+              }
+            })
+          } else if(holidayCheck.textContent === "休みを取り消す"){ // チェックを外す(休みを取り消す)と表に色がつく
+            inLabel.removeAttribute("style", "display:none")
+            outLabel.removeAttribute("style", "display:none")
+            overLabel.removeAttribute("style", "display:none")
+            inActual.removeAttribute("type","hidden")
+            outActual.removeAttribute("type","hidden")
+            overTime.removeAttribute("type","hidden")
+            holidayCheck.textContent = "休みにする"
+            timeId.forEach(function(target){ // 入時間から終時間までのセルを色付け
+              let trName = target.parentElement.firstElementChild.textContent // セルの行の氏名
+              let timeIn = ((target.id / 2) - 0.5) * 100 // 希望入時間(0分)の数値 12:34 => 1234
+              let timeInMinute = ((target.id / 2) * 100) - 70 // 希望入時間(30分)の数値
+              let timeOut = (target.id / 2) * 100 // 希望終時間(時)の数値
+              let timeOutMinute = timeOut - 20 // 希望終時間(分)の数値
+              if((userId.value === trName) && (work.date === date.value)){ // ループしてるユーザー名と各行のユーザー名が一致した時のみ実行
+                if((timeIn >= work.datetime_in_actual) || (timeInMinute >= work.datetime_in_actual)){
+                  target.setAttribute("style", "background-color:gray;")
+                }
+                if(timeOutMinute > work.datetime_out_actual){
+                  target.removeAttribute("style", "background-color:gray;")
+                }
+              }
+            })
+          }
+        })
+      }
+    }
 
 
     function update() { // フォーム送信処理
