@@ -24,6 +24,7 @@
 # 本番環境
 
 ### URL
+https://shift-success.herokuapp.com/
 
 ## ログイン情報(テスト用)
 
