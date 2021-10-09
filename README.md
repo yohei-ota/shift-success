@@ -27,8 +27,9 @@
 https://shift-success.herokuapp.com/
 
 ## ログイン情報(テスト用)
+【設定中】
 
-### 会社名
+<!-- ### 会社名
 
 -
 
@@ -42,7 +43,7 @@ https://shift-success.herokuapp.com/
 
 - Eメール:
 - パスワード:
-- 暗証番号:
+- 暗証番号: -->
 
 
 # 制作背景(意図)
